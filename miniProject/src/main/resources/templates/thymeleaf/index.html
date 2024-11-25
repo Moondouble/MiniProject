@@ -111,26 +111,7 @@
                            </a>
                         </div>
                      </div>
-                     <div class="login_menu">
-                        <ul>
-                           <li><a href="#">
-                              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                              <span class="padding_10">Cart</span></a>
-                           </li>
-                           <li>
-                           <div th:if="${session.userId}"><!--세션 존재 안할시(로그인으로 연결)-->
-                              <a href="Login">
-                              <i class="fa fa-user" aria-hidden="true"></i>
-                              <span class="padding_10">Login</span></a>
-                              </div>
-                              <div th:if="${}"><!--세션 존재 할시(내 프로필로 연결)-->
-                                 <a href="UserProfile">
-                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                 <span class="padding_10">Profile</span></a>
-                                 </div>
-                           </li>
-                        </ul>
-                     </div>
+                     
                   </div>
                </div>
             </div>
