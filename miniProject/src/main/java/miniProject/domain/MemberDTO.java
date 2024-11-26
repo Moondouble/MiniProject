@@ -13,13 +13,8 @@ public class MemberDTO {
 	String memberName;
 	String memberId;
 	String memberPw;
-	String memberAddr;
-	String memberAddrDetail;
-	String memberPost;
 	Date memberRegist;
-	String gender;
-	String memberPhone1;
-	String memberPhone2;
+	String memberPhone;
 	String memberEmail;
 	Date memberBirth;
 }

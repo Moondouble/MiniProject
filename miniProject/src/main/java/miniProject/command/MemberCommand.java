@@ -12,12 +12,7 @@ public class MemberCommand {
 	String memberPw;
 	String memberPwCon;
 	String memberName;
-	String memberAddr;
-	String memberAddrDetail;
-	String memberPost;
-	String memberPhone1;
-	String memberPhone2;
-	String gender;
+	String memberPhone;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date memberBirth;
 	String memberEmail;

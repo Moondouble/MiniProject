@@ -17,16 +17,11 @@ public class MemberInsertService {
 	
 	public void execute(MemberCommand memberCommand) {
 		MemberDTO dto = new MemberDTO();
-		dto.setGender(memberCommand.getGender());
-		dto.setMemberAddr(memberCommand.getMemberAddr());
-		dto.setMemberAddrDetail(memberCommand.getMemberAddrDetail());
 		dto.setMemberBirth(memberCommand.getMemberBirth());
 		dto.setMemberEmail(memberCommand.getMemberEmail());
 		dto.setMemberId(memberCommand.getMemberId());
 		dto.setMemberName(memberCommand.getMemberName());
-		dto.setMemberPhone1(memberCommand.getMemberPhone1());
-		dto.setMemberPhone2(memberCommand.getMemberPhone2());
-		dto.setMemberPost(memberCommand.getMemberPost());
+		dto.setMemberPhone(memberCommand.getMemberPhone());
 		dto.setMemberPw(passwordEncoder.encode(memberCommand.getMemberPw()));
 		memberMapper.memberInsert(dto);
 	}
