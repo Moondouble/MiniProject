@@ -32,7 +32,7 @@
         $(function() {
             $("#nxtBtn").click(function() {
                 if ($("#agree").is(":checked")) {
-                    location.href = "Register";
+                    location.href = "register";
                 } else {
                     alert("약관에 동의해야 합니다.");
                 }
@@ -127,6 +127,7 @@
         <!-- 헤더 섹션 종료 -->
         
         <!-- 사용자 약관 -->
+        <div style="text-align: center;">
         <h1>기가마켓 사용자 약관</h1>
         <textarea rows="30" cols="60" style="align-items: center;" readonly="readonly">
 제 1 조 (목적) 이 약관은 기가마켓(이하 "사이트")이 제공하는 모든 서비스의 이용조건 및 절차, 회원과 사이트의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
@@ -214,5 +215,6 @@
 <input type="checkbox" id="agree">동의함
 
 <button id="nxtBtn">다음으로</button>
+</div>
 </body>
 </html>
