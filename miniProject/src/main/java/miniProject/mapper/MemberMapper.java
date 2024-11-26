@@ -6,5 +6,5 @@ import miniProject.domain.MemberDTO;
 
 @Mapper
 public interface MemberMapper {
-	public Integer memberInsert(MemberDTO dto);
+	public void memberInsert(MemberDTO dto);
 }
