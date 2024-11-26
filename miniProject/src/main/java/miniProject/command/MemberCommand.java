@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Data
 public class MemberCommand {
+	String memberNum;
 	String memberId;
 	String memberPw;
 	String memberPwCon;
