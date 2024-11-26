@@ -8,12 +8,12 @@
 		<version>2.6.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>misoShopping</groupId>
-	<artifactId>springBootMVCShopping</artifactId>
+	<groupId>miniProject</groupId>
+	<artifactId>miniProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>springBootMVCShopping</name>
-	<description>Demo project for Spring Boot</description>
+	<name>miniProject</name>
+	<description>miniProject</description>
 	<url/>
 	<licenses>
 		<license/>
