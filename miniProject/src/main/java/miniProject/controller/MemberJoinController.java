@@ -6,16 +6,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("login")
 public class MemberJoinController {
-	@RequestMapping("loginWindow")
+	@RequestMapping("login/loginWindow")
 	public String loginWindow() {
 		return "thymeleaf/login/loginWindow";
 	}
 	
-	@RequestMapping("memberRegist")
-	public String memberRegist() {
-		return "thymeleaf/Join/memberRegist";
+	@RequestMapping("Join/tos")
+	public String tos() {
+		return "thymeleaf/Join/tos";
+	}
+	
+	@RequestMapping("Join/register")
+	public String register() {
+		return "thymeleaf/Join/register";
 	}
 	
 }
