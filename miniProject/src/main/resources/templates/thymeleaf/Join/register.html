@@ -144,8 +144,13 @@
         
         <!-- 회원가입 폼 -->
         <div class="register-container">
+<<<<<<< HEAD
         <form action="memberWrite" method="post" class="register-form" th:object="${memberCommand}">
             <!--<input type="hidden" name="memberNum" value="">-->
+=======
+        <form action="memberWrite" method="post" class="register-form">
+            <input type="hidden" id="memberNum" value="">
+>>>>>>> branch 'main' of https://github.com/Moondouble/MiniProject.git
             <table border="1" align="center">
                 <caption><h1>회원가입</h1></caption>
                 <tr><td>회원번호</td><td><input type="text" name="memberNum" th:value="*{memberNum}"></td></tr>
