@@ -52,4 +52,5 @@ public class MemberJoinController {
         memberInsertService.execute(memberCommand);
         return "thymeleaf/Join/welcome";
     }
+
 }
