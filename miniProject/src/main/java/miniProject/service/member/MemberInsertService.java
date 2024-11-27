@@ -21,7 +21,7 @@ public class MemberInsertService {
 		dto.setMemberEmail(memberCommand.getMemberEmail());
 		dto.setMemberId(memberCommand.getMemberId());
 		dto.setMemberName(memberCommand.getMemberName());
-		dto.setMemberPhone(memberCommand.getMemberPhone());
+		dto.setMemberPhone1(memberCommand.getMemberPhone());
 		dto.setMemberPw(passwordEncoder.encode(memberCommand.getMemberPw()));
 		memberMapper.memberInsert(dto);
 	}

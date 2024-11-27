@@ -19,8 +19,6 @@ public class MemberJoinController {
 	MemberInsertService memberInsertService;
 	@Autowired
 	AutoNumService autoNumService;
-	@Autowired
-	MemberWriteService memberWriteService;
 	
 	@RequestMapping("login/loginWindow")
 	public String loginWindow() {
@@ -44,7 +42,7 @@ public class MemberJoinController {
 		model.addAttribute("memberCommand", memberCommand);
 		return "thymeleaf/Join/register";
 	}
-	@PostMapping("memberRegist")
+	@PostMapping("Join/memberWrite")
 	public String write(@Validated MemberCommand memberCommand
 			,BindingResult result
 			/*, Model model*/) {
@@ -57,10 +55,7 @@ public class MemberJoinController {
 					, "비밀번호가 일치 하지 않습니다.");
 			return "thymeleaf/Join/register";
 		}
-		memberWriteService.execute(memberCommand);
-		return "thymeleaf/Join/welcome";
+		memberInsertService.execute(memberCommand);
+		return "redirect:../login/loginWindow";
 	}
-
-	
-	
 }
