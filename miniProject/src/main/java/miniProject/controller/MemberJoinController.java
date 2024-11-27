@@ -21,9 +21,9 @@ public class MemberJoinController {
     @Autowired
     AutoNumService autoNumService;
 
-    @RequestMapping("../login/loginWindow")
+    @RequestMapping("loginWindow")
     public String loginWindow() {
-        return "thymeleaf/login/loginWindow";
+        return "thymeleaf/Join/loginWindow";
     }
     
     @RequestMapping("tos")
@@ -40,17 +40,16 @@ public class MemberJoinController {
         return "thymeleaf/Join/register";
     }
     
-    @PostMapping("/memberWrite")
+    @PostMapping("memberWrite")
     public String write(@Validated MemberCommand memberCommand, BindingResult result) {
         if (result.hasErrors()) {
             return "thymeleaf/Join/register";
         }
         if (!memberCommand.isMemberPwEqualMemberPwCon()) {
-            result.rejectValue("memberPwCon", "memberCommand.memberPwCon", "비밀번호가 일치 하지 않습니다.");
+            result.rejectValue("memberPwCon", "memberCommand.memberPwCon", "비밀번호가 일치하지 않습니다.");
             return "thymeleaf/Join/register";
         }
         memberInsertService.execute(memberCommand);
         return "thymeleaf/Join/welcome";
     }
-
 }
