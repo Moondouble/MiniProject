@@ -12,7 +12,7 @@
         delete from ${tableName}
         where ${columnName} in 
             <foreach collection="nums" item="num" open="(" close=")" index="index" separator=",">
-                #{num}
+                #{num,jdbcType=VARCHAR}
             </foreach> 
     </delete>
 </mapper>

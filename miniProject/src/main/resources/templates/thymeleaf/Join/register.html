@@ -145,10 +145,9 @@
         <!-- 회원가입 폼 -->
         <div class="register-container">
         <form action="memberWrite" method="post" class="register-form" th:object="${memberCommand}">
-            <!--<input type="hidden" name="memberNum" value="">-->
+            <input type="hidden" name="memberNum" th:value="${memberCommand.memberNum}">
             <table border="1" align="center">
-                <caption><h1>회원가입</h1></caption>
-                <tr><td>회원번호</td><td><input type="text" name="memberNum" th:value="${memberCommand.memberNum}"></td></tr>
+                <legend><h1>회원가입</h1></legend>
                 <tr><td>아이디</td><td><input type="text" name="memberId"></td></tr>
                 <tr><td>비밀번호</td><td><input type="password" name="memberPw"></td></tr>
                 <tr><td>비밀번호 확인</td><td><input type="password" name="memberPwCon"></td></tr>
