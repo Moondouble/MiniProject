@@ -13,7 +13,7 @@ public class MemberCommand {
 	String memberPw;
 	String memberPwCon;
 	String memberName;
-	String memberPhone;
+	String memberPhone1;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date memberBirth;
 	String memberEmail;
