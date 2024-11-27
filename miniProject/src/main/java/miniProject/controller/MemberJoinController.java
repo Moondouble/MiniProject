@@ -2,16 +2,21 @@ package miniProject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import miniProject.command.MemberCommand;
-import miniProject.service.MemberInsertService;
+import miniProject.service.AutoNumService;
+import miniProject.service.member.MemberInsertService;
 
 @Controller
 public class MemberJoinController {
 	@Autowired
 	MemberInsertService memberInsertService;
+	@Autowired
+	AutoNumService autoNumService;
 	
 	@RequestMapping("login/loginWindow")
 	public String loginWindow() {
@@ -23,19 +28,29 @@ public class MemberJoinController {
 		return "thymeleaf/Join/tos";
 	}
 	
-	@RequestMapping("Join/register")
-	public String register() {
+//	@RequestMapping("Join/register")
+//	public String register() {
+//		return "thymeleaf/Join/register";
+//	}
+	@GetMapping("Join/write")
+	public String register(Model model) {
+		String autoNum = autoNumService.execute("mem_", "member_num", 5, "members");
+		MemberCommand memberCommand = new MemberCommand();
+		memberCommand.setMemberNum(autoNum);
+		model.addAttribute("memberCommand", memberCommand);
 		return "thymeleaf/Join/register";
+		//return "member/memberForm";
 	}
 	
-	@PostMapping("Join/userWrite")
+	@PostMapping("Join/memberWrite")
 	public String userWrite(MemberCommand memberCommand) {
-		if (!memberCommand.isMemberPwEqualMemberPwCon()){
-			 System.out.println("비밀번호 확인이 다릅니다.");
-			 return "thymeleaf/member/memberForm"; 
-		}
+//		if (!memberCommand.isMemberPwEqualMemberPwCon()){
+//			 System.out.println("비밀번호 확인이 다릅니다.");
+//			 return "redirect:register"; 
+//		}
 		memberInsertService.execute(memberCommand);
 		return "redirect:../login/loginWindow";
 	}
+	
 	
 }

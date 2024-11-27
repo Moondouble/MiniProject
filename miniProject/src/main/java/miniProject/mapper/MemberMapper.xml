@@ -5,10 +5,9 @@
 <mapper namespace="miniProject.mapper.MemberMapper">
 <insert id="memberInsert" parameterType="MemberDTO">
 
-insert into members(member_id, member_pw, member_name, member_phone, member_birth, member_email, member_regist)
->>>>>>> branch 'main' of https://github.com/Moondouble/MiniProject.git
-values(#{memberId}, #{memberPw}, #{memberName}
-		, #{memberPhone},  #{memberBirth}, #{memberEmail}, sysdate)
+insert into members(member_num, member_id, member_pw, member_name, member_phone, member_birth
+					, member_email, member_regist)
+values(#{memberNum}, #{memberId}, #{memberPw}, #{memberName}, #{memberPhone},  #{memberBirth}, #{memberEmail}, sysdate)
 
 </insert>
 </mapper>
