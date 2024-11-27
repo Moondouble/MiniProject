@@ -5,9 +5,9 @@
 <mapper namespace="miniProject.mapper.MemberMapper">
 <insert id="memberInsert" parameterType="MemberDTO">
 
-insert into members(member_num, member_id, member_pw, member_name, member_phone, member_birth
+insert into members(member_num, member_id, member_pw, member_name, member_phone1, member_birth
 					, member_email, member_regist)
-values(#{memberNum}, #{memberId}, #{memberPw}, #{memberName}, #{memberPhone},  #{memberBirth}, #{memberEmail}, sysdate)
+values(#{memberNum}, #{memberId}, #{memberPw}, #{memberName}, #{memberPhone1},  #{memberBirth}, #{memberEmail}, sysdate)
 
 </insert>
 </mapper>
