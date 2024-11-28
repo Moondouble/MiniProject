@@ -1,5 +1,7 @@
 package miniProject.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,9 +10,13 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import miniProject.command.LoginCommand;
 import miniProject.command.MemberCommand;
 import miniProject.service.AutoNumService;
+import miniProject.service.IdcheckService;
+import miniProject.service.UserLoginService;
 import miniProject.service.member.MemberInsertService;
 
 @Controller
@@ -20,6 +26,10 @@ public class MemberJoinController {
     MemberInsertService memberInsertService;
     @Autowired
     AutoNumService autoNumService;
+    @Autowired
+    IdcheckService idcheckService;
+    @Autowired
+    UserLoginService userLoginService;
 
     @RequestMapping("loginWindow")
     public String loginWindow() {
@@ -52,4 +62,25 @@ public class MemberJoinController {
         memberInsertService.execute(memberCommand);
         return "thymeleaf/Join/welcome";
     }
+    @PostMapping("userIdCheck")
+	public @ResponseBody Integer userIdCheck(String userId) {
+		// html, jsp파일경로(x)
+		return idcheckService.execute(userId);
+		
+	}
+	@PostMapping("login")
+	public String login(@Validated LoginCommand loginCommand
+			,BindingResult result
+			,HttpSession session) {
+		userLoginService.execute(loginCommand, session, result);
+		if(result.hasErrors()) {
+			return "thymeleaf/index";
+		}
+		return "redirect:/";
+	}
+	@GetMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 }

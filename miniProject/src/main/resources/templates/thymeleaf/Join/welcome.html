@@ -28,17 +28,6 @@
 
     <!-- 스크립트 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(function() {
-            $("#nxtBtn").click(function() {
-                if ($("#agree").is(":checked")) {
-                    location.href = "Register";
-                } else {
-                    alert("약관에 동의해야 합니다.");
-                }
-            });
-        });
-    </script>
     <style>
         .welcome-container {
             display: flex;
@@ -142,7 +131,7 @@
         <table>
         <tr><td colspan="2"><H1>회원가입 완료!</H1></td></tr>
         <tr><td colspan="2"><H2>회원이 되신 것을 환영합니다!</H2></td></tr>
-        <tr><td><button onclick="location.href='loginWindow'">로그인하기</button></td><td><button onclick="location.href='/'">메인으로</button></td></tr>n
+        <tr><td><button onclick="location.href='loginWindow'">로그인하기</button></td><td><button onclick="location.href='/'">메인으로</button></td></tr>
         </table>
 </div>
 </body>
