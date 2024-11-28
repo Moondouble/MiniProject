@@ -62,6 +62,7 @@ public class MemberJoinController {
         memberInsertService.execute(memberCommand);
         return "thymeleaf/Join/welcome";
     }
+
     @PostMapping("userIdCheck")
 	public @ResponseBody Integer userIdCheck(String userId) {
 		// html, jsp파일경로(x)
