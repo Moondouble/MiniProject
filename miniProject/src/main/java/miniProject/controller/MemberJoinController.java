@@ -32,7 +32,7 @@ public class MemberJoinController {
     UserLoginService userLoginService;
 
     @RequestMapping("loginWindow")
-    public String loginWindow() {
+    public String loginWindow(HttpSession session) {
         return "thymeleaf/Join/loginWindow";
     }
     
@@ -75,7 +75,7 @@ public class MemberJoinController {
 			,HttpSession session) {
 		userLoginService.execute(loginCommand, session, result);
 		if(result.hasErrors()) {
-			return "thymeleaf/index";
+			return "redirect:/";
 		}
 		return "redirect:/";
 	}
