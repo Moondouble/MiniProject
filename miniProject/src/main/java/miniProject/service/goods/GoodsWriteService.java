@@ -1,6 +1,7 @@
 package miniProject.service.goods;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.UUID;
 
@@ -14,86 +15,83 @@ import miniProject.command.GoodsCommand;
 import miniProject.domain.AuthInfoDTO;
 import miniProject.domain.GoodsDTO;
 import miniProject.mapper.GoodsMapper;
-import miniProject.mapper.MemberMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class GoodsWriteService {
-	@Autowired
-	GoodsMapper goodsMapper;
-	@Autowired
-	MemberMapper memberMapper;
-	
-	public void execute(GoodsCommand goodsCommand,HttpSession session) {
-		GoodsDTO dto = new GoodsDTO();
-		dto.setGoodsContents(goodsCommand.getGoodsContents());
-		dto.setGoodsName(goodsCommand.getGoodsName());
-		dto.setGoodsNum(goodsCommand.getGoodsNum());
-		dto.setGoodsPrice(goodsCommand.getGoodsPrice());
-//		AuthInfoDTO auth = (AuthInfoDTO)session.getAttribute("auth");
-//		if (auth == null || auth.getUserId() == null) {
-//		    throw new IllegalStateException("로그인 정보가 없습니다. 다시 로그인하세요.");
-//		}
-//		String memberNum = memberMapper.getMemberNum(auth.getUserId());
-//		if (memberNum == null) {
-//		    throw new IllegalStateException("회원 정보를 찾을 수 없습니다.");
-//		}
-//		dto.setMemberNum(memberNum);
-		AuthInfoDTO auth = new AuthInfoDTO();
-		auth.setUserId("testUser"); // 임의 사용자 ID 설정
-		session.setAttribute("auth", auth); // 세션에 auth 저장
-//		////// 파일 추가
-//		/// 경로
-//		URL resource = getClass().getClassLoader().getResource("/static/upload");
-//		if (resource == null) {
-//		    throw new IllegalStateException("업로드 경로를 찾을 수 없습니다.");
-//		}
-//		System.out.println("resource : " + resource);
-//		String filrDir = resource.getFile();
-//		//String filrDir = "C:/Users/misolaptop1/eclipse-workspace/real_time_data_process_20240708/springBootMVCShopping/target/classes/static/upload";
-//		////////파일 관련 내용
-//		//  메인이미지
-//		MultipartFile mf = goodsCommand.getGoodsMainImage();
-//		if (mf == null || mf.isEmpty()) {
-//		    throw new IllegalArgumentException("메인 이미지가 제공되지 않았습니다.");
-//		}
-//		String originalFile = mf.getOriginalFilename();
-//		/// 저장하기 위한 이름 만들기 : UUID : shfioshiof30750937skfhs
-//		// 확장자 : .jpg, .png : abcd.abdc.jpg
-//		String extension = originalFile.substring(originalFile.lastIndexOf("."));
-//		// 이름 짖기
-//		String storeName = UUID.randomUUID().toString().replace("-", "");
-//		String storeFileName = storeName + extension;
-//		// 파일 생성
-//		File file = new File(filrDir + "/" + storeFileName);
-//		try {
-//			mf.transferTo(file);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		/// dto에저장
-//		dto.setGoodsMainImage(originalFile);
-//		dto.setGoodsMainStoreImage(storeFileName);
-//		////
-//		if(!goodsCommand.getGoodsDetailImage()[0].getOriginalFilename().isEmpty()) {
-//			String originalTotal = ""; 
-//			String storeTotal = "";
-//			for(MultipartFile mpf : goodsCommand.getGoodsDetailImage()) {
-//				originalFile = mpf.getOriginalFilename();//오류
-//				extension = originalFile.substring(originalFile.lastIndexOf("."));
-//				storeName = UUID.randomUUID().toString().replace("-", "");
-//				storeFileName = storeName + extension;
-//				file = new File(filrDir + "/" + storeFileName);
-//				try {
-//					mpf.transferTo(file);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//				originalTotal += originalFile + "/";
-//				storeTotal += storeFileName +"/";
-//			}
-//			dto.setGoodsDetailImage(originalTotal);
-//			dto.setGoodsDetailStoreImage(storeTotal);
-//		}
-		goodsMapper.goodsInsert(dto);
-	}
+
+    private static final Logger logger = LoggerFactory.getLogger(GoodsWriteService.class);
+
+    @Autowired
+    GoodsMapper goodsMapper;
+
+    public void execute(GoodsCommand goodsCommand, HttpSession session) {
+        GoodsDTO dto = new GoodsDTO();
+        dto.setGoodsContents(goodsCommand.getGoodsContents());
+        dto.setGoodsName(goodsCommand.getGoodsName());
+        dto.setGoodsNum(goodsCommand.getGoodsNum());
+        dto.setGoodsPrice(goodsCommand.getGoodsPrice());
+        AuthInfoDTO auth = (AuthInfoDTO) session.getAttribute("auth");
+
+        // 파일 추가
+        URL resource = null;
+        try {
+            resource = getClass().getClassLoader().getResource("static/upload");
+            if (resource == null) {
+                logger.warn("Resource is null, using default path");
+                resource = new File("static/upload").toURI().toURL();
+            }
+        } catch (MalformedURLException e) {
+            logger.error("Malformed URL Exception", e);
+        }
+        
+        if (resource != null) {
+            String fileDir = resource.getFile();
+            logger.info("Resource URL: " + resource);
+
+            // 메인이미지
+            MultipartFile mf = goodsCommand.getGoodsMainImage();
+            String originalFile = mf.getOriginalFilename();
+            String extension = originalFile.substring(originalFile.lastIndexOf("."));
+            String storeName = UUID.randomUUID().toString().replace("-", "");
+            String storeFileName = storeName + extension;
+            File file = new File(fileDir + "/" + storeFileName);
+            try {
+                mf.transferTo(file);
+            } catch (Exception e) {
+                logger.error("Error transferring main image file", e);
+            }
+            dto.setGoodsMainImage(originalFile);
+            dto.setGoodsMainStoreImage(storeFileName);
+
+            // 상세이미지
+            if (!goodsCommand.getGoodsDetailImage()[0].getOriginalFilename().isEmpty()) {
+                StringBuilder originalTotal = new StringBuilder();
+                StringBuilder storeTotal = new StringBuilder();
+                for (MultipartFile mpf : goodsCommand.getGoodsDetailImage()) {
+                    originalFile = mpf.getOriginalFilename();
+                    extension = originalFile.substring(originalFile.lastIndexOf("."));
+                    storeName = UUID.randomUUID().toString().replace("-", "");
+                    storeFileName = storeName + extension;
+                    file = new File(fileDir + "/" + storeFileName);
+                    try {
+                        mpf.transferTo(file);
+                    } catch (Exception e) {
+                        logger.error("Error transferring detail image file", e);
+                    }
+                    originalTotal.append(originalFile).append("/");
+                    storeTotal.append(storeFileName).append("/");
+                }
+                dto.setGoodsDetailImage(originalTotal.toString());
+                dto.setGoodsDetailStoreImage(storeTotal.toString());
+            }
+
+            goodsMapper.goodsInsert(dto);
+        } else {
+            logger.error("Resource URL is null, cannot proceed with file operations");
+        }
+    }
 }
+
+

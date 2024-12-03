@@ -43,7 +43,7 @@ public class GoodsController {
 	
 	@RequestMapping("../")
 	public String goodsList(Model model){
-		goodsListService.execute(model);
+		goodsListService.execute(null,model,1);
 		return "redirect:../";
 	}
 }
