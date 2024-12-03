@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import miniProject.domain.AuthInfoDTO;
+<<<<<<< HEAD
 import miniProject.service.goods.MainGoodsListService;
+=======
+import miniProject.domain.MemberDTO;
+>>>>>>> branch 'main' of https://github.com/Moondouble/MiniProject.git
 
 @Controller
 @SpringBootApplication
@@ -23,7 +27,7 @@ public class MiniProjectApplication {
 	}
 
 	@GetMapping("/")
-	public String index(HttpSession session, Model model) {
+	public String index(HttpSession session, Model model,MemberDTO memberDTO) {
 	    AuthInfoDTO authInfo = (AuthInfoDTO) session.getAttribute("auth");
 	    if (authInfo != null) {
 	    	System.out.println("로그인 되었습니다.");
