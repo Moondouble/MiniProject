@@ -46,7 +46,7 @@
                   <div class="col-sm-12">
                      <div class="custom_menu">
                         <ul>
-                           <li><a href="#">Best Sellers</a></li>
+                           <li><a href="goods/goodsForm">GoodsList</a></li>
                            <li><a href="#">Gift Ideas</a></li>
                            <li><a href="#">New Releases</a></li>
                            <li><a href="#">Today's Deals</a></li>
@@ -172,15 +172,15 @@
       </div>
       <!-- banner bg main end -->
       <!-- electronic section start -->
-      <div class="fashion_section">
+      <div class="fashion_section" >
          <div id="electronic_main_slider" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                <div class="carousel-item active">
                   <div class="container">
                      <h1 class="fashion_taital">노트북</h1>
-                     <div class="fashion_section_2">
+                     <div class="fashion_section_2" >
                         <div class="row">
-                           <th:forEach><!--여기에 forEach추가-->
+                        	<tr th:each="dto: ${list}">
                               <div class="col-lg-4 col-sm-4">
                                  <div class="box_main">
                                     <th:h4 class="shirt_text">[[${dto.goodsName}]]</h4>
@@ -192,7 +192,7 @@
                                     </div>
                                  </div>
                               </div>
-                           </th:forEach>
+                            </tr>
                         </div>
                      </div>
                   </div>
@@ -202,7 +202,7 @@
                      <h1 class="fashion_taital">컴퓨터</h1>
                      <div class="fashion_section_2">
                         <div class="row">
-                        <th:forEach><!--여기에 forEach추가-->
+                        <tr th:each="dto:${list}"><!--여기에 forEach추가-->
                            <div class="col-lg-4 col-sm-4">
                               <div class="box_main">
                                  <h4 class="shirt_text">Computers</h4>
@@ -214,7 +214,7 @@
                                  </div>
                               </div>
                            </div>
-                        </th:forEach>
+                        </tr>
                         </div>
                      </div>
                   </div>
@@ -225,7 +225,7 @@
                      <h1 class="fashion_taital">스마트폰</h1>
                      <div class="fashion_section_2">
                         <div class="row">
-                        <th:forEach><!--여기에 forEach추가-->
+                        <tr th:each="dto:${list}"><!--여기에 forEach추가-->
                            <div class="col-lg-4 col-sm-4">
                               <div class="box_main">
                                  <h4 class="shirt_text">Mobile</h4>
@@ -237,7 +237,7 @@
                                  </div>
                               </div>
                            </div>
-                        </th:forEach>
+                        </tr>
                         </div>
                      </div>
                   </th:forEach>

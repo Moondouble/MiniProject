@@ -7,4 +7,10 @@
     insert into members(member_num, member_id, member_pw, member_name, member_phone1, member_birth, member_email, member_regist)
     values(#{memberNum,jdbcType=VARCHAR}, #{memberId}, #{memberPw}, #{memberName}, #{memberPhone1}, #{memberBirth}, #{memberEmail}, sysdate)
 </insert>
+
+
+<select id="getMemberNum" parameterType="string" resultType="string">
+select member_num from members
+where member_id = #{memberId}
+</select>
 </mapper>

@@ -7,4 +7,7 @@ import miniProject.domain.MemberDTO;
 @Mapper
 public interface MemberMapper {
 	public void memberInsert(MemberDTO dto);
+	
+	
+	public String getMemberNum(String memberId);
 }

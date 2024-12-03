@@ -75,7 +75,7 @@ public class MemberJoinController {
 			,HttpSession session) {
 		userLoginService.execute(loginCommand, session, result);
 		if(result.hasErrors()) {
-			return "thymeleaf/index";
+			return "redirect:/";
 		}
 		return "redirect:/";
 	}
