@@ -24,20 +24,19 @@ values(#{goodsNum}, #{goodsName}, #{goodsPrice}, #{goodsContents}, sysdate,
 
 <!-- dto에 직접 넣어 가지고 오는 것이 아니라 setter를 이용해서 가져오겠습니다. -->
 <resultMap type="goods" id="goodsResultMap">
-	<constructor>
-		<idArg column="goods_Num" jdbcType="VARCHAR" javaType="string"/>
-		<arg column="goods_Name" jdbcType="VARCHAR" javaType="string" />
-		<arg column="GOODS_PRICE" jdbcType="BIGINT" javaType="integer" />
-		<arg column="goods_Contents" javaType="string" jdbcType="VARCHAR" />
-		<arg column="visit_Count" javaType="integer" jdbcType="BIGINT" />
-		<arg column="goods_Regist" javaType="java.util.Date" jdbcType="DATE" />
-		<arg column="goods_Update_Date" javaType="java.util.Date" jdbcType="DATE" />
-		<arg column="GOODS_MAIN_IMAGE" javaType="string" jdbcType="VARCHAR" />
-		<arg column="GOODS_MAIN_STORE_IMAGE" javaType="string" jdbcType="VARCHAR" />
-		<arg column="GOODS_DETAIL_IMAGE" javaType="string" jdbcType="VARCHAR" />
-		<arg column="GOODS_DETAIL_STORE_IMAGE" javaType="string" jdbcType="VARCHAR" />		
-	</constructor>
+    <id property="goodsNum" column="goods_Num" jdbcType="VARCHAR"/>
+    <result property="goodsName" column="goods_Name" jdbcType="VARCHAR"/>
+    <result property="goodsPrice" column="GOODS_PRICE" jdbcType="BIGINT"/>
+    <result property="goodsContents" column="goods_Contents" jdbcType="VARCHAR"/>
+    <result property="visitCount" column="visit_Count" jdbcType="BIGINT"/>
+    <result property="goodsRegist" column="goods_Regist" jdbcType="DATE"/>
+    <result property="goodsUpdateDate" column="goods_Update_Date" jdbcType="DATE"/>
+    <result property="goodsMainImage" column="GOODS_MAIN_IMAGE" jdbcType="VARCHAR"/>
+    <result property="goodsMainStoreImage" column="GOODS_MAIN_STORE_IMAGE" jdbcType="VARCHAR"/>
+    <result property="goodsDetailImage" column="GOODS_DETAIL_IMAGE" jdbcType="VARCHAR"/>
+    <result property="goodsDetailStoreImage" column="GOODS_DETAIL_STORE_IMAGE" jdbcType="VARCHAR"/>
 </resultMap>
+
 <select id="allSelect" resultMap="goodsResultMap">
 select * from (
 	select ROW_NUMBER() over (order by goods_num desc) as rn,
@@ -52,6 +51,7 @@ select * from (
 )
 where rn between #{startRow}  and #{endRow}
 </select>
+
 <select id="goodsCount" parameterType="string" resultType="integer">
 	select count(*) from goods
 	<where>
@@ -61,6 +61,7 @@ where rn between #{startRow}  and #{endRow}
 		</if>
 	</where>
 </select>
+
 <delete id="productsDelete" parameterType="string">
 delete from goods <!-- foreach문을 사용해서 in연산자를 사용합니다. -->
 where goods_num in <foreach collection="products" item="goodsNum" open="(" close=")" index="index"
@@ -74,6 +75,7 @@ select <include refid="goodsColumnsBase" />
 from goods  
 where goods_Num = #{goodsNum}
 </select>
+
 <update id="goodsUpdate" parameterType="goods"> 
 update goods
 <trim prefix="set" suffixOverrides=",">
@@ -91,6 +93,7 @@ update goods
 </trim>
 where goods_num = #{goodsNum}
 </update>
+
 <delete id="goodsDelete" parameterType="string">
 delete from goods
 where goods_num = #{goodsNum}
@@ -107,12 +110,3 @@ select * from (
 where rn between #{startRow} and #{endRow}
 </select>
 </mapper>
-<!-- nvl <====> ifnull ====> COALESCE(column, 0) -->
-
-
-
-
-
-
-
-
