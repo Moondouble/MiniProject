@@ -16,7 +16,7 @@
 	<result column="member_email" property="userEmail" jdbcType="VARCHAR"/>
 </resultMap>
 <select id="loginSelectOne" parameterType="string" resultMap="authResultMap">
-select member_id , member_pw , member_name ,member_email , 'mem' as grade
+select member_id , member_pw , member_name ,member_email
 from members
 where member_id = #{userId}
 
