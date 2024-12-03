@@ -47,10 +47,6 @@
                      <div class="custom_menu">
                         <ul>
                            <li><a href="goods/goodsForm">GoodsList</a></li>
-                           <li><a href="#">Gift Ideas</a></li>
-                           <li><a href="#">New Releases</a></li>
-                           <li><a href="#">Today's Deals</a></li>
-                           <li><a href="#">Customer Service</a></li>
                         </ul>
                      </div>
                   </div>
@@ -63,7 +59,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-sm-12">
-                     <div class="logo"><a href="../"><img src="/static/images/logo.png">여기에 로고 이미지(글은 로고 수정후 지우기)</a></div>
+                     <div class="logo"><a href="../"><img src="/static/images/logo.png"></a></div>
                   </div>
                </div>
             </div>
@@ -75,17 +71,15 @@
                <div class="containt_main">
                   <div id="mySidenav" class="sidenav">
                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                     <a href="index.html">Home</a>
-                     <a href="electronic.html">Electronic</a>
+                     <a href="/">Home</a>
                   </div>
                   <span class="toggle_icon" onclick="openNav()"><img src="/static/images/toggle-icon.png"></span>
                   <div class="dropdown">
                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">All Category 
                      </button>
                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Action</a><!-- 링크 두개 삭제함 -->
+
                      </div>
                   </div>
                   <div class="main">
@@ -121,10 +115,10 @@
                             	  <i class="fa fa-user" aria-hidden="true"></i>
                               <span class="padding_10">Login</span></a>
                            </li>
-                           <li th:if="${session.auth.userId != nulln }"><a href="member/profile">
+                        <!--    <li th:if="${session?.auth?.userId != null }"><a href="member/profile">
                             	  <i class="fa fa-user" aria-hidden="true"></i>
                               <span class="padding_10">Profile</span></a>
-                           </li>
+                           </li>-->
                         </ul>
                      </div>
                   </div>
@@ -144,23 +138,7 @@
                               <div class="buynow_bt"><a href="#">보러가기</a></div>
                            </div>
                         </div>
-                     </div>
-                     <div class="carousel-item">
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <h1 class="banner_taital">광고 2 <br>설명 22222222222</h1>
-                              <div class="buynow_bt"><a href="#">보러가기</a></div>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="carousel-item">
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <h1 class="banner_taital">광고 3 <br>설명 333333333333</h1>
-                              <div class="buynow_bt"><a href="#">보러가기</a></div>
-                           </div>
-                        </div>
-                     </div>
+                     </div><!-- 광고 두개 지움 -->
                   </div>
                   <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
                   <i class="fa fa-angle-left"></i>
@@ -205,7 +183,7 @@
                      <h1 class="fashion_taital">컴퓨터</h1>
                      <div class="fashion_section_2">
                         <div class="row">
-                        <tr th:each="dto:${list}"><!--여기에 forEach추가-->
+                        <tr th:each="dto:${list}">
                            <div class="col-lg-4 col-sm-4">
                               <div class="box_main">
                                  <h4 class="shirt_text">Computers</h4>
@@ -224,11 +202,10 @@
                </div>
                <div class="carousel-item">
                   <div class="container">
-                     <th:forEach>
                      <h1 class="fashion_taital">스마트폰</h1>
                      <div class="fashion_section_2">
                         <div class="row">
-                        <tr th:each="dto:${list}"><!--여기에 forEach추가-->
+                        <tr th:each="dto:${list}">
                            <div class="col-lg-4 col-sm-4">
                               <div class="box_main">
                                  <h4 class="shirt_text">Mobile</h4>
@@ -243,7 +220,6 @@
                         </tr>
                         </div>
                      </div>
-                  </th:forEach>
                   </div>
                </div>
             </div>
