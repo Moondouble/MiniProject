@@ -6,10 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import miniProject.domain.AuthInfoDTO;
+import miniProject.domain.MemberDTO;
 
 @Controller
 @SpringBootApplication
@@ -20,7 +20,7 @@ public class MiniProjectApplication {
 	}
 
 	@GetMapping("/")
-	public String index(HttpSession session, Model model) {
+	public String index(HttpSession session, Model model,MemberDTO memberDTO) {
 	    AuthInfoDTO authInfo = (AuthInfoDTO) session.getAttribute("auth");
 	    if (authInfo != null) {
 	    	System.out.println("로그인 되었습니다.");

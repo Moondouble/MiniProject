@@ -3,12 +3,20 @@
 	"-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="miniProject.mapper.GoodsMapper">
+
 <sql id="goodsColumnsBase">
 	   goods_Num , goods_name , goods_price ,goods_contents , emp_num  
 	  ,goods_regist , GOODS_MAIN_IMAGE ,GOODS_MAIN_STORE_IMAGE 
 	  , GOODS_DETAIL_IMAGE ,GOODS_DETAIL_STORE_IMAGE 
 	  , visit_count ,update_Emp_Num , goods_Update_Date
 </sql>
+
+<resultMap id="goodsResultMap" type="miniProject.domain.GoodsDTO">
+    <result property="goodsNum" column="goods_num"/>
+    <result property="goodsName" column="goods_name"/>
+    <result property="goodsPrice" column="goods_price"/>
+    <result property="goodsContents" column="goods_contents"/>
+</resultMap>
 
 <insert id="goodsInsert" parameterType="goods">
 insert into goods ( goods_num, goods_name, goods_Price, goods_contents)

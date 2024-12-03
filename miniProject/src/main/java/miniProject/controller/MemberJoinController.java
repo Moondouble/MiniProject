@@ -32,7 +32,7 @@ public class MemberJoinController {
     UserLoginService userLoginService;
 
     @RequestMapping("loginWindow")
-    public String loginWindow(HttpSession session) {
+    public String loginWindow(HttpSession session,LoginCommand loginCommand) {
         return "thymeleaf/Join/loginWindow";
     }
     
