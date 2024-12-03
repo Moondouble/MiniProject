@@ -35,6 +35,33 @@
       <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
       <link rel="stylesoeet" href="/static/css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
+      <script type="text/javascript">
+		var page = 0;
+		$(function(){
+			loadMoreItems();
+			$("#load-more").click(loadMoreItems);
+		});
+		function loadMoreItems(){
+			page ++;
+			$.ajax({
+				url : "/",
+				type:"post",
+				data : JSON.stringify({"page": page}),
+				contentType: "application/json",
+				success : function(model){
+					var item  = '';
+					$.each(model.list , function(dto){
+						item += dto.goodsNum;
+						item += dto.goodsName;
+					});
+					$("#content").append(item);
+					if(model.maxPage <= page )$("#load-more").css("display","none");
+					if(model.maxPage == 0)page = 0;
+				}
+			})
+		}
+		</script>
    </head>
    <body>
       <!-- banner bg main start -->
@@ -160,12 +187,17 @@
                   <div class="container">
                      <h1 class="fashion_taital">노트북</h1>
                      <div class="fashion_section_2" >
-                        <div class="row">
+                        <div id="content">
+                        <!-- <table align="center">
                         	<tr th:each="dto: ${list}">
-                              <div class="col-lg-4 col-sm-4">
+								<td>
+									${dto.goodsName}<br />
+									${#numbers.formatCurrency(dto.goodsPrice) + "원"}<br />
+								</td>
+									<div class="col-lg-4 col-sm-4">
                                  <div class="box_main">
-                                    <th:h4 class="shirt_text">[[${dto.goodsName}]]</h4>
-                                    <th:p class="price_text">[[${dto.goodsPrice}]]  <span style="color: #262626;">$ 100</span></p>
+                                    <th:h4 class="shirt_text">${dto.goodsName}</h4>
+                                    <th:p class="price_text">${dto.goodsPrice}<span style="color: #262626;">$ 100</span></p>
                                     <div class="electronic_img"><img src="/static/images/laptop-img.png"></div>
                                     <div class="btn_main">
                                        <div class="buy_bt"><a href="#">구매자와 연락하기</a></div>
@@ -174,61 +206,23 @@
                                  </div>
                               </div>
                             </tr>
+                          </table> -->
                         </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="fashion_taital">컴퓨터</h1>
-                     <div class="fashion_section_2">
-                        <div class="row">
-                        <tr th:each="dto:${list}">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Computers</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="electronic_img"><img src="/static/images/computer-img.png"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </tr>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="fashion_taital">스마트폰</h1>
-                     <div class="fashion_section_2">
-                        <div class="row">
-                        <tr th:each="dto:${list}">
-                           <div class="col-lg-4 col-sm-4">
-                              <div class="box_main">
-                                 <h4 class="shirt_text">Mobile</h4>
-                                 <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                 <div class="electronic_img"><img src="/static/images/mobile-img.png"></div>
-                                 <div class="btn_main">
-                                    <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                    <div class="seemore_bt"><a href="#">See More</a></div>
-                                 </div>
-                              </div>
-                           </div>
-                        </tr>
-                        </div>
-                     </div>
+							<table align="center" width="900">
+								<tr>
+									<th><button id="load-more">더보기</button></th>
+								</tr>
+							</table>
+						</div>
                   </div>
                </div>
             </div>
-            <a class="carousel-control-prev" href="#electronic_main_slider" role="button" data-slide="prev">
+            <!-- <a class="carousel-control-prev" href="#electronic_main_slider" role="button" data-slide="prev">
             <i class="fa fa-angle-left"></i>
             </a>
             <a class="carousel-control-next" href="#electronic_main_slider" role="button" data-slide="next">
             <i class="fa fa-angle-right"></i>
-            </a>
+            </a> -->
          </div>
       </div>
       <!-- electronic section end -->

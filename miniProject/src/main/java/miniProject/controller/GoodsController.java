@@ -41,9 +41,5 @@ public class GoodsController {
 		return "redirect:../";
 	}
 	
-	@RequestMapping("../")
-	public String goodsList(Model model){
-		goodsListService.execute(model);
-		return "redirect:../";
-	}
+	
 }

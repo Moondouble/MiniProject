@@ -2,14 +2,17 @@ package miniProject;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import miniProject.domain.AuthInfoDTO;
+import miniProject.service.goods.MainGoodsListService;
 
 @Controller
 @SpringBootApplication
@@ -27,5 +30,15 @@ public class MiniProjectApplication {
 	        model.addAttribute("auth", authInfo);
 	    }
 	    return "thymeleaf/index";
+	}
+	
+	@Autowired
+	MainGoodsListService mainGoodsListService;
+	@PostMapping("/")
+	public ModelAndView index(int page, Model model) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		mainGoodsListService.execute(page, model);
+		return mav;
 	}
 }

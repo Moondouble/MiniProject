@@ -13,8 +13,8 @@ import miniProject.mapper.GoodsMapper;
 public class GoodsListService {
 	@Autowired
 	GoodsMapper goodsMapper;
+
 	public void execute(Model model) {
-		List<GoodsDTO> list = goodsMapper.goodsSelectList();
-		model.addAttribute("list", list);
+		List<GoodsDTO> list = goodsMapper.goodsAllSelect();
 	}
 }
