@@ -16,9 +16,4 @@ public class memberController
 	public String update() {
 		return "#";
 	}
-	
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'main' of https://github.com/Moondouble/MiniProject.git
