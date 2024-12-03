@@ -12,11 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import miniProject.domain.AuthInfoDTO;
-<<<<<<< HEAD
 import miniProject.service.goods.MainGoodsListService;
-=======
 import miniProject.domain.MemberDTO;
->>>>>>> branch 'main' of https://github.com/Moondouble/MiniProject.git
 
 @Controller
 @SpringBootApplication

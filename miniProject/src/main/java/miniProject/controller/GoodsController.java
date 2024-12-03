@@ -41,13 +41,9 @@ public class GoodsController {
 		return "redirect:../";
 	}
 	
-<<<<<<< HEAD
-	
-=======
 	@RequestMapping("../")
 	public String goodsList(Model model){
 		goodsListService.execute(null,model,1);
 		return "redirect:../";
 	}
->>>>>>> branch 'main' of https://github.com/Moondouble/MiniProject.git
 }

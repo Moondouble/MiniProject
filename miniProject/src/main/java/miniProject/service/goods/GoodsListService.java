@@ -15,11 +15,7 @@ import miniProject.service.StartEndPageService;
 public class GoodsListService {
 	@Autowired
 	GoodsMapper goodsMapper;
-<<<<<<< HEAD
 
-	public void execute(Model model) {
-		List<GoodsDTO> list = goodsMapper.goodsAllSelect();
-=======
 	@Autowired
 	StartEndPageService startEndPageService;
 	String searchWord;
@@ -32,7 +28,6 @@ public class GoodsListService {
 		int count = goodsMapper.goodsCount(searchWord);
 		// 페이징
 		startEndPageService.execute(page,limit, count, searchWord,list, model);
->>>>>>> branch 'main' of https://github.com/Moondouble/MiniProject.git
 	}
 }
 

@@ -10,14 +10,6 @@ import miniProject.domain.StartEndPageDTO;
 
 @Mapper
 public interface GoodsMapper {
-<<<<<<< HEAD
-	public void goodsInsert(GoodsDTO dto);
-	public List<GoodsDTO> goodsAllSelect();
-	public int goodsCount(String searchWord);
-	public List<GoodsDTO> goodsSelectList(
-			@Param("startRow") int startRow
-			,@Param("endRow") int endRow);
-=======
 	public int goodsInsert(GoodsDTO dto);
 	public List<GoodsDTO> allSelect(StartEndPageDTO sepDTO);
 	public int goodsCount(String searchWord);
@@ -30,5 +22,4 @@ public interface GoodsMapper {
 			@Param("startRow") int startRow
 			,@Param("endRow") int endRow);
 
->>>>>>> branch 'main' of https://github.com/Moondouble/MiniProject.git
 }
