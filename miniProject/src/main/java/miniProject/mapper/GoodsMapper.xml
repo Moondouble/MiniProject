@@ -39,6 +39,7 @@ values(#{goodsNum}, #{goodsName}, #{goodsPrice}, #{goodsContents}, #{goodsCatego
 		<arg column="GOODS_DETAIL_STORE_IMAGE" javaType="string" jdbcType="VARCHAR" />		
 	</constructor>
 </resultMap>
+
 <select id="allSelect" resultMap="goodsResultMap">
 select * from (
 	select ROW_NUMBER() over (order by goods_num desc) as rn,
@@ -53,6 +54,7 @@ select * from (
 )
 where rn between #{startRow}  and #{endRow}
 </select>
+
 <select id="goodsSelectAll" resultType="goods">
 select <include refid="goodsColumnsBase" />
 from goods
@@ -67,6 +69,7 @@ from goods
 		</if>
 	</where>
 </select>
+
 <delete id="productsDelete" parameterType="string">
 delete from goods <!-- foreach문을 사용해서 in연산자를 사용합니다. -->
 where goods_num in <foreach collection="products" item="goodsNum" open="(" close=")" index="index"
@@ -80,6 +83,7 @@ select <include refid="goodsColumnsBase" />
 from goods  
 where goods_Num = #{goodsNum}
 </select>
+
 <update id="goodsUpdate" parameterType="goods"> 
 update goods
 <trim prefix="set" suffixOverrides=",">
@@ -97,6 +101,7 @@ update goods
 </trim>
 where goods_num = #{goodsNum}
 </update>
+
 <delete id="goodsDelete" parameterType="string">
 delete from goods
 where goods_num = #{goodsNum}
@@ -113,12 +118,3 @@ select * from (
 where rn between #{startRow} and #{endRow}
 </select>
 </mapper>
-<!-- nvl <====> ifnull ====> COALESCE(column, 0) -->
-
-
-
-
-
-
-
-

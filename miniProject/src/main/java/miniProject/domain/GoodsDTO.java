@@ -31,3 +31,4 @@ public class GoodsDTO {
 	String goodsDetailImage;
 	String goodsDetailStoreImage;
 }
+
