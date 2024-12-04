@@ -28,6 +28,7 @@ public class GoodsListService {
 		int count = goodsMapper.goodsCount(searchWord);
 		// 페이징
 		startEndPageService.execute(page,limit, count, searchWord,list, model);
+		model.addAttribute("list", list);
 	}
 }
 

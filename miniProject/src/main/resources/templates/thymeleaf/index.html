@@ -35,33 +35,6 @@
       <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
       <link rel="stylesoeet" href="/static/css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.1.min.js"></script>
-      <script type="text/javascript">
-		var page = 0;
-		$(function(){
-			loadMoreItems();
-			$("#load-more").click(loadMoreItems);
-		});
-		function loadMoreItems(){
-			page ++;
-			$.ajax({
-				url : "/",
-				type:"post",
-				data : JSON.stringify({"page": page}),
-				contentType: "application/json",
-				success : function(model){
-					var item  = '';
-					$.each(model.list , function(dto){
-						item += dto.goodsNum;
-						item += dto.goodsName;
-					});
-					$("#content").append(item);
-					if(model.maxPage <= page )$("#load-more").css("display","none");
-					if(model.maxPage == 0)page = 0;
-				}
-			})
-		}
-		</script>
    </head>
    <body>
       <!-- banner bg main start -->
@@ -73,7 +46,8 @@
                   <div class="col-sm-12">
                      <div class="custom_menu">
                         <ul>
-                           <li><a href="goods/goodsForm">GoodsList</a></li>
+                           <li><a href="goods/goodsForm">상품등록</a></li>
+                           <li><a href="goods/goodsList">상품리스트</a></li>
                         </ul>
                      </div>
                   </div>
@@ -189,11 +163,11 @@
                   <div class="container">
                      <h1 class="fashion_taital">노트북</h1>
                      <div class="fashion_section_2" >
-                        <div id="content">
-                        <!-- <table align="center">
+                        <div class="row">
+                        <table align="center">
                         	<tr th:each="dto: ${list}">
 								<td>
-									${dto.goodsName}<br />
+									[[${dto.goodsName}]]<br />
 									${#numbers.formatCurrency(dto.goodsPrice) + "원"}<br />
 								</td>
 									<div class="col-lg-4 col-sm-4">
@@ -208,7 +182,7 @@
                                  </div>
                               </div>
                             </tr>
-                          </table> -->
+                          </table>
                         </div>
 							<table align="center" width="900">
 								<tr>

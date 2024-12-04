@@ -126,6 +126,17 @@
 					<td><input type="text" name="goodsName"><br /></td>
 				</tr>
 				<tr>
+					<th>카테고리</th>
+					<td>
+						<select th:field="*{goodsCategory}" id="category">
+							<option value="none">카테고리</option>
+							<option value="apple">사과</option>
+							<option value="banana">바나나</option>
+							<option value="orange">오렌지</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
 					<th>상품가격</th>
 					<td><input type="number" name="goodsPrice" min="0"></td>
 				</tr>

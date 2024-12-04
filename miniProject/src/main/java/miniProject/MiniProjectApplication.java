@@ -39,7 +39,7 @@ public class MiniProjectApplication {
 	public ModelAndView index(int page, Model model) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("jsonView");
-		mainGoodsListService.execute(page, model);
+		mainGoodsListService.execute(model);
 		return mav;
 	}
 }

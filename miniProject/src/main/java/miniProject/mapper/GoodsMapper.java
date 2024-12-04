@@ -12,6 +12,7 @@ import miniProject.domain.StartEndPageDTO;
 public interface GoodsMapper {
 	public int goodsInsert(GoodsDTO dto);
 	public List<GoodsDTO> allSelect(StartEndPageDTO sepDTO);
+	public List<GoodsDTO> goodsSelectAll();
 	public int goodsCount(String searchWord);
 	public int productsDelete(@Param("products") String products[]);
 	public GoodsDTO selectOne(String goodsNum);

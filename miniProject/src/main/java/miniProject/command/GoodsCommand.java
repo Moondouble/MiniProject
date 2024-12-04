@@ -12,6 +12,7 @@ public class GoodsCommand {
 	String goodsName;
 	Integer goodsPrice;
 	String goodsContents;
+	String goodsCategory;
 	String empNum;
 	Date goodsRegist;
 	String updateEmpNum;

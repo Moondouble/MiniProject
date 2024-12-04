@@ -17,6 +17,7 @@ public class GoodsDTO {
 	String goodsName;
 	Integer goodsPrice;
 	String goodsContents;
+	String goodsCategory;
 	String empNum;
 	String memberNum;
 	Integer visitCount;

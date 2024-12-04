@@ -32,6 +32,7 @@ public class GoodsWriteService {
         dto.setGoodsName(goodsCommand.getGoodsName());
         dto.setGoodsNum(goodsCommand.getGoodsNum());
         dto.setGoodsPrice(goodsCommand.getGoodsPrice());
+        dto.setGoodsCategory(goodsCommand.getGoodsCategory());
         AuthInfoDTO auth = (AuthInfoDTO) session.getAttribute("auth");
 
         // 파일 추가

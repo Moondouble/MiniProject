@@ -8,13 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import miniProject.command.GoodsCommand;
 import miniProject.service.AutoNumService;
+import miniProject.service.goods.GoodsDetailService;
 import miniProject.service.goods.GoodsListService;
 import miniProject.service.goods.GoodsWriteService;
+import miniProject.service.goods.MainGoodsListService;
 
 @Controller
 @RequestMapping("goods")
@@ -25,6 +28,8 @@ public class GoodsController {
 	GoodsWriteService goodsWriteService;
 	@Autowired
 	GoodsListService goodsListService;
+	@Autowired
+	GoodsDetailService goodsDetailService;
 	
 	@GetMapping("goodsForm")
 	public String goodsForm(Model model) {
@@ -39,6 +44,21 @@ public class GoodsController {
 	public String goodsWrite(@Validated GoodsCommand goodsCommand, BindingResult result, HttpSession session) {
 		goodsWriteService.execute(goodsCommand, session);
 		return "redirect:../";
+	}
+	
+	@Autowired
+	MainGoodsListService mainGoodsListService;
+	@GetMapping("goodsList")
+	public String goodsList2(Model model) {
+		mainGoodsListService.execute(model);
+		return "thymeleaf/goods/goodsList";
+	}
+	
+	/// PathVariable
+	@GetMapping("goodsDetail/{goodsNum}")
+	public String memberDetail(@PathVariable("goodsNum") String goodsNum, Model model) {
+		goodsDetailService.execute(model, goodsNum);
+		return "thymeleaf/goods/goodsDetail";
 	}
 	
 	@RequestMapping("../")
