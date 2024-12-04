@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import miniProject.command.GoodsCommand;
 import miniProject.service.AutoNumService;
@@ -55,15 +56,14 @@ public class GoodsController {
 	}
 	
 	/// PathVariable
-	@GetMapping("goodsDetail/{goodsNum}")
-	public String memberDetail(@PathVariable("goodsNum") String goodsNum, Model model) {
-		goodsDetailService.execute(model, goodsNum);
+	@RequestMapping("goodsDetail")
+	public String goodsDetail(@RequestParam("goodsNum") String goodsNum, Model model) {
+		goodsDetailService.execute(goodsNum, model);
 		return "thymeleaf/goods/goodsDetail";
 	}
 	
-	@RequestMapping("../")
-	public String goodsList(Model model){
-		goodsListService.execute(null,model,1);
-		return "redirect:../";
-	}
+	/*
+	 * @RequestMapping("../") public String goodsList(Model model){
+	 * goodsListService.execute(null,model,1); return "redirect:../"; }
+	 */
 }

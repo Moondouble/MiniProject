@@ -15,7 +15,8 @@ public interface GoodsMapper {
 	public List<GoodsDTO> goodsSelectAll();
 	public int goodsCount(String searchWord);
 	public int productsDelete(@Param("products") String products[]);
-	public GoodsDTO selectOne(String goodsNum);
+	public GoodsDTO goodsSelectOne(String goodsNum);
+	//public GoodsDTO selectOne(String goodsNum);
 	public int goodsUpdate(GoodsDTO dto);
 	public int goodsDelete(String goodsNum);
 	

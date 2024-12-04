@@ -4,8 +4,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="miniProject.mapper.GoodsMapper">
 <sql id="goodsColumnsBase">
-	   goods_Num , goods_name , goods_price ,goods_contents, goods_category
-	  ,goods_regist , GOODS_MAIN_IMAGE ,GOODS_MAIN_STORE_IMAGE 
+	   goods_Num , goods_name , goods_price ,goods_contents, goods_category, emp_num, member_num
+	  ,goods_regist ,update_emp_num, GOODS_MAIN_IMAGE ,GOODS_MAIN_STORE_IMAGE 
 	  , GOODS_DETAIL_IMAGE ,GOODS_DETAIL_STORE_IMAGE 
 	  , visit_count , goods_Update_Date
 </sql>
@@ -30,8 +30,11 @@ values(#{goodsNum}, #{goodsName}, #{goodsPrice}, #{goodsContents}, #{goodsCatego
 		<arg column="GOODS_PRICE" jdbcType="BIGINT" javaType="integer" />
 		<arg column="goods_Contents" javaType="string" jdbcType="VARCHAR" />
 		<arg column="GOODS_CATEGORY" javaType="string" jdbcType="VARCHAR" />
+		<arg column="emp_Num" javaType="string" jdbcType="VARCHAR" />
+        <arg column="member_Num" javaType="string" jdbcType="VARCHAR" />
 		<arg column="visit_Count" javaType="integer" jdbcType="BIGINT" />
 		<arg column="goods_Regist" javaType="java.util.Date" jdbcType="DATE" />
+		<arg column="update_emp_num" javaType="string" jdbcType="VARCHAR" />
 		<arg column="goods_Update_Date" javaType="java.util.Date" jdbcType="DATE" />
 		<arg column="GOODS_MAIN_IMAGE" javaType="string" jdbcType="VARCHAR" />
 		<arg column="GOODS_MAIN_STORE_IMAGE" javaType="string" jdbcType="VARCHAR" />
@@ -78,10 +81,10 @@ where goods_num in <foreach collection="products" item="goodsNum" open="(" close
 					</foreach>
 </delete>
 
-<select id="selectOne" parameterType="string" resultMap="goodsResultMap">
+<select id="goodsSelectOne" parameterType="string" resultMap="goodsResultMap">
 select <include refid="goodsColumnsBase" />
-from goods  
-where goods_Num = #{goodsNum}
+from goods
+where goods_num = #{goodsNum}
 </select>
 
 <update id="goodsUpdate" parameterType="goods"> 

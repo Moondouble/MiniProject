@@ -144,9 +144,9 @@
 			</thead>
 			<tbody>
 				<tr th:each="dto : ${list}">
-					<td><a th:href="@{goodsDetail/${dto.goodsNum}}">[[${dto.goodsName}]]</a></td>
-					<td><a th:href="@{goodsDetail/${dto.goodsNum}}">[[${dto.goodsPrice}]]</a></td>
-					<td><a th:href="@{goodsDetail/${dto.goodsNum}}">[[${dto.goodsContents}]]</a></td>
+					<td><a th:href="|goodsDetail?goodsNum=${dto.goodsNum}|">[[${dto.goodsName}]]</a></td>
+					<td><a th:href="|goodsDetail?goodsNum=${dto.goodsNum}|">[[${dto.goodsPrice}]]</a></td>
+					<td>[[${dto.goodsContents}]]</td>
 				</tr>
 			</tbody>
 		</table>

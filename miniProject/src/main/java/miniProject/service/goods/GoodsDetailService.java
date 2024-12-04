@@ -11,9 +11,8 @@ import miniProject.mapper.GoodsMapper;
 public class GoodsDetailService {
 	@Autowired
 	GoodsMapper goodsMapper;
-	public void execute(Model model, String goodsNum) {
-		GoodsDTO dto = goodsMapper.selectOne(goodsNum);
-		model.addAttribute("memberCommand", dto);
-		
+	public void execute(String goodsNum, Model model) {
+		GoodsDTO dto = goodsMapper.goodsSelectOne(goodsNum);
+		model.addAttribute("goodsCommand", dto);
 	}
 }
