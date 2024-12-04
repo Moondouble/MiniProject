@@ -11,7 +11,7 @@ import miniProject.mapper.MemberMapper;
 public class MemberDetailService {
 	@Autowired
 	MemberMapper memberMapper;
-	public void execute(Model model, String memberNum) {
+	public void execute(String memberNum, Model model) {
 		MemberDTO dto = memberMapper.memberSelectOne(memberNum);
 		model.addAttribute("memberCommand", dto);
 		

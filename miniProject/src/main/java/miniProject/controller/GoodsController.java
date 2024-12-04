@@ -55,7 +55,6 @@ public class GoodsController {
 		return "thymeleaf/goods/goodsList";
 	}
 	
-	/// PathVariable
 	@RequestMapping("goodsDetail")
 	public String goodsDetail(@RequestParam("goodsNum") String goodsNum, Model model) {
 		goodsDetailService.execute(goodsNum, model);
