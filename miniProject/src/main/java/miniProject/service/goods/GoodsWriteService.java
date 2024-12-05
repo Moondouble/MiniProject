@@ -1,4 +1,4 @@
-package springBootMVCShopping.service.goods;
+package miniProject.service.goods;
 
 
 import java.io.File;
@@ -15,7 +15,11 @@ import miniProject.command.GoodsCommand;
 import miniProject.domain.AuthInfoDTO;
 import miniProject.domain.GoodsDTO;
 import miniProject.mapper.GoodsMapper;
-import springBootMVCShopping.mapper.EmployeeMapper;
+
+import miniProject.mapper.MemberMapper;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class GoodsWriteService {
@@ -77,10 +81,8 @@ public class GoodsWriteService {
 		}
 		goodsMapper.goodsInsert(dto);
 	}
+
 }
-
-
-
 
 
 

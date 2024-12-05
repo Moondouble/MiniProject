@@ -168,10 +168,12 @@
                                  <div class="box_main">
                                     <th:h4 class="shirt_text">[[${dto.goodsName}]]</h4><br>
                                     <th:p class="price_text">[[${dto.goodsPrice}]]<span style="color: #262626;"></span></p>
-                                    <div class="electronic_img"><img src="/static/images/laptop-img.png"></div>
+                                    <div class="electronic_img">
+    									<img th:src="|/static/upload/${dto.goodsMainStoreImage}|"/>
+									</div>
                                     <div class="btn_main">
-                                       <div class="buy_bt"><a href="#">구매자와 연락하기</a></div>
-                                       <div class="seemore_bt"><a href="#">관심상품 추가하기</a></div>
+                                       <div class="buy_bt"><a href="tel:[[${dto.memberPhone1}]]">구매자와 연락하기</a></div>
+                                       <div class="seemore_bt"><a href="wish/wishList">관심상품 추가하기</a></div>
                                     </div>
                                  </div>
                               </div>
