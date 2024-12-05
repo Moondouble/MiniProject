@@ -151,7 +151,12 @@
                 <tr>
                     <td colspan="2">등록물품</td>
                 </tr>
-                <tr th:each="dto: ${memberGoodsList}">
+                 <tr th:if="${memberGoodsList.size == 0}">
+                    <td>상품번호</td>
+                    <td>등록한 상품이 없습니다.</td>
+                </tr>
+                
+                <tr th:each="dto: ${memberGoodsList}" th:if="${memberGoodsList.size != 0}">
                     <td><a th:href="|/../goods/goodsDetail?goodsNum=${dto.goodsNum}|">[[${dto.goodsNum}]]</a></td>
                     <td><a th:href="|/../goods/goodsDetail?goodsNum=${dto.goodsNum}|">[[${dto.goodsName}]]</a></td>
                 </tr>
@@ -180,4 +185,5 @@
     <!-- 배너 배경 메인 종료 -->
 </body>
 </html>
+
 

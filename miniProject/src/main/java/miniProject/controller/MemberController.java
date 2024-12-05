@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import miniProject.domain.MemberDTO;
 import miniProject.service.goods.GoodsDetailService;
 import miniProject.service.goods.MainGoodsListService;
+import miniProject.service.goods.MemberGoodsListService;
 import miniProject.service.member.MemberDetailService;
 
 
@@ -19,8 +20,7 @@ public class MemberController {
     @Autowired
     MemberDetailService memberDetailService;
     @Autowired
-    MainGoodsListService mainGoodsListService;
-
+    MemberGoodsListService memberGoodsListService;
     @GetMapping("/memberDetail/{memberNum}")
     public String memberDetail(@PathVariable("memberNum") String memberNum, Model model) {
         memberDetailService.execute(memberNum, model);
