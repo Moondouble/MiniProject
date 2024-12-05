@@ -15,7 +15,6 @@ public class MainGoodsListService {
 	GoodsMapper goodsMapper;
 	public void execute(Model model) {
 		List<GoodsDTO> list = goodsMapper.goodsSelectAll();
-		List<GoodsDTO> memberGoodsList = goodsMapper.memberGoodsSelectAll();
 		model.addAttribute("list", list);
 	}
 }

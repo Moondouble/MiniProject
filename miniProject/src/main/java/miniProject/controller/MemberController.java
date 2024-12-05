@@ -24,7 +24,10 @@ public class MemberController {
     @GetMapping("/memberDetail/{memberNum}")
     public String memberDetail(@PathVariable("memberNum") String memberNum, Model model) {
         memberDetailService.execute(memberNum, model);
+<<<<<<< HEAD
         memberGoodsListService.execute(memberNum,model);
+=======
+>>>>>>> branch 'main' of https://github.com/Moondouble/MiniProject.git
         return "thymeleaf/member/profile";
     }
 }
