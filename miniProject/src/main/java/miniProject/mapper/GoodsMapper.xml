@@ -61,6 +61,12 @@ where rn between #{startRow}  and #{endRow}
 <select id="goodsSelectAll" resultType="goods">
 select <include refid="goodsColumnsBase" />
 from goods
+
+</select>
+<select id="goodsSelectAll" resultType="goods">
+select <include refid="goodsColumnsBase" />
+from goods
+where member_num = #{memberNum}
 </select>
 
 <select id="goodsCount" parameterType="string" resultType="integer">

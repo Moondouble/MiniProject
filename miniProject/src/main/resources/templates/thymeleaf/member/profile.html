@@ -150,8 +150,9 @@
                 <tr>
                     <td colspan="2">등록물품</td>
                 </tr>
-                    <td>상품 번호</td>
-                    <td>등록된 물품 데이터가 없습니다.</td>
+                <tr th:each="dto: ${list}">
+                    <td>[[${dto.goodsNum}]]</td>
+                    <td>[[${dto.goodsName}]]</td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center"><a href="/../Join/logout">로그아웃</a></td>
