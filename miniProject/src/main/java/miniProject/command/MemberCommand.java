@@ -14,6 +14,7 @@ public class MemberCommand {
 	String memberPwCon;
 	String memberName;
 	String memberPhone1;
+	String memberPhone2;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date memberBirth;
 	String memberEmail;

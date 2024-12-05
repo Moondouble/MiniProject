@@ -138,7 +138,7 @@
 			</tr>
 			<tr>
 				<th>등록한 회원</th>
-				<td>[[${goodsCommand.memberNum }]]</td>
+				<td><a th:href="@{/../member/memberDetail/{memberNum}(memberNum=${goodsCommand.memberNum })}"/>[[${goodsCommand.memberNum }]]</a></td>
 			</tr>
 			<tr>
 				<th>등록일</th>

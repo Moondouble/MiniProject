@@ -15,6 +15,11 @@ public class MemberDTO {
 	String memberPw;
 	Date memberRegist;
 	String memberPhone1;
+	String memberPhone2;
+	String memberAddr;
+	String memberAddrDetail;
+	String memberPost;
+	String gender;
 	String memberEmail;
 	Date memberBirth;
 }
