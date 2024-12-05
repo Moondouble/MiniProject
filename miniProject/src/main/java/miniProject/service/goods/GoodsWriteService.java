@@ -15,6 +15,8 @@ import miniProject.command.GoodsCommand;
 import miniProject.domain.AuthInfoDTO;
 import miniProject.domain.GoodsDTO;
 import miniProject.mapper.GoodsMapper;
+import miniProject.mapper.MemberMapper;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +27,8 @@ public class GoodsWriteService {
 
     @Autowired
     GoodsMapper goodsMapper;
+    @Autowired
+    MemberMapper memberMapper;
 
     public void execute(GoodsCommand goodsCommand, HttpSession session) {
         GoodsDTO dto = new GoodsDTO();
@@ -34,7 +38,9 @@ public class GoodsWriteService {
         dto.setGoodsPrice(goodsCommand.getGoodsPrice());
         dto.setGoodsCategory(goodsCommand.getGoodsCategory());
         AuthInfoDTO auth = (AuthInfoDTO) session.getAttribute("auth");
-
+        String memberNum = memberMapper.getMemberNum(auth.getUserId());
+		dto.setMemberNum(memberNum);
+        
         // 파일 추가
         URL resource = null;
         try {

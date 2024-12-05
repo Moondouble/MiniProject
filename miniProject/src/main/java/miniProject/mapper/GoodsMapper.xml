@@ -11,8 +11,8 @@
 </sql>
 <insert id="goodsInsert" parameterType="goods">
 insert into goods ( <include refid="goodsColumnsBase" /> )
-values(#{goodsNum}, #{goodsName}, #{goodsPrice}, #{goodsContents}, #{goodsCategory}, sysdate, 
-		#{goodsMainImage}, #{goodsMainStoreImage},
+values(#{goodsNum}, #{goodsName}, #{goodsPrice}, #{goodsContents}, #{goodsCategory}, null, #{memberNum}
+		, sysdate, null, #{goodsMainImage}, #{goodsMainStoreImage},
 		<if test="goodsDetailImage != null">
 		#{goodsDetailImage},#{goodsDetailStoreImage},
 		</if>

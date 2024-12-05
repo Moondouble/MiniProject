@@ -15,6 +15,7 @@ import miniProject.domain.AuthInfoDTO;
 import miniProject.domain.MemberDTO;
 import miniProject.service.goods.GoodsListService;
 import miniProject.service.goods.MainGoodsListService;
+import miniProject.service.member.MemberDetailService;
 
 @Controller
 @SpringBootApplication
@@ -25,9 +26,12 @@ public class MiniProjectApplication {
 	}
 	@Autowired
 	GoodsListService goodsListService;
+	@Autowired
+	MemberDetailService memberDetailService;
 	@GetMapping("/")
 	public String index(HttpSession session, Model model,MemberDTO memberDTO) {
 	    AuthInfoDTO authInfo = (AuthInfoDTO) session.getAttribute("auth");
+	    goodsListService.execute(null,model,1);
 	    if (authInfo != null) {
 	    	System.out.println("로그인 되었습니다.");
 	        model.addAttribute("auth", authInfo);
