@@ -24,7 +24,7 @@ public class MemberController {
     @GetMapping("/memberDetail/{memberNum}")
     public String memberDetail(@PathVariable("memberNum") String memberNum, Model model) {
         memberDetailService.execute(memberNum, model);
-        mainGoodsListService.execute(model);
+        //mainGoodsListService.execute(model);
         return "thymeleaf/member/profile";
     }
 }
