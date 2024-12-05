@@ -28,21 +28,21 @@
     
     <!-- 스크립트 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(function() {
-            $("#nxtBtn").click(function() {
-                if ($("#agree").is(":checked")) {
-                    location.href = "write";
-                } else {
-                    alert("약관에 동의해야 합니다.");
-                }
-            });
-        });
-    </script>
 	 <style type="text/css">
-		table {
+		.table-list {
 			width: 100%;
 			border-collapse: collapse;
+			justify-content: center;
+            height: 100px;
+		}
+		.register-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+		table{
+		margin:auto;
 		}
 		
 		th, td {
@@ -131,12 +131,14 @@
         </div>
         <!-- 헤더 섹션 종료 -->
         <br>
-		<h1>Goods List</h1>
-    
+        <div class="table-container">
+        <div>
+    	<h1>Goods List</h1>
 		<!-- list 모델 속성에 있는 데이터를 반복문으로 출력 -->
-		<table>
+		<table border="1">
 			<thead>
 				<tr>
+					<th>상품사진</th>
 					<th>상품이름</th>
 					<th>상품가격</th>
 					<th>상품설명</th>
@@ -144,12 +146,15 @@
 			</thead>
 			<tbody>
 				<tr th:each="dto : ${list}">
-					<td><a th:href="|goodsDetail?goodsNum=${dto.goodsNum}|">[[${dto.goodsName}]]</a></td>
-					<td><a th:href="|goodsDetail?goodsNum=${dto.goodsNum}|">[[${dto.goodsPrice}]]</a></td>
-					<td>[[${dto.goodsContents}]]</td>
+					<td width="200px" height="100px"><a th:href="|goodsDetail?goodsNum=${dto.goodsNum}|"><img th:src="|/static/upload/${dto.goodsMainStoreImage}|" alt="image-not-found" style="width: 150px;height: 150px;object-fit:contain;"/></a></td>
+					<td style="font-size:42px"><a th:href="|goodsDetail?goodsNum=${dto.goodsNum}|">[[${dto.goodsName}]]</a></td>
+					<td style="font-size:36px"><a th:href="|goodsDetail?goodsNum=${dto.goodsNum}|">[[${dto.goodsPrice}]]</a></td>
+					<td style="font-size:24px">[[${dto.goodsContents}]]</td>
 				</tr>
 			</tbody>
 		</table>
+		</div>
+		</div>
 </div>
 </body>
 </html>

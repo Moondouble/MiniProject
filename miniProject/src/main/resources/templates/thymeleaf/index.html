@@ -141,8 +141,8 @@
                      <div class="carousel-item active">
                         <div class="row">
                            <div class="col-sm-12">
-                              <h1 class="banner_taital">시작하기 <br>당신이 필요한 전자기기, 기가마켓에 다 있다!</h1>
-                              <div class="buynow_bt"><a href="#">보러가기</a></div>
+                              <h1 class="banner_taital">시작하기 </h1><h2 style="text-align:center;font-size:48px;color:white;font-weight:1.5;">당신이 필요한 전자기기<br> 기가마켓에 다 있다!</h2>
+                              <div class="buynow_bt"><a href="goods/goodsList">보러가기</a></div>
                            </div>
                         </div>
                      </div><!-- 광고 두개 지움 -->
@@ -159,7 +159,7 @@
             <div class="carousel-inner">
                <div class="carousel-item active">
                   <div class="container">
-                     <h1 class="fashion_taital">노트북</h1>
+                     <h1 class="fashion_taital">최근 올라온 상품</h1>
                      <div class="fashion_section_2" >
                         <div class="row">
                         <table align="center">
@@ -169,7 +169,7 @@
                                     <th:h4 class="shirt_text">[[${dto.goodsName}]]</h4><br>
                                     <th:p class="price_text">[[${dto.goodsPrice}]]<span style="color: #262626;"></span></p>
                                     <div class="electronic_img">
-    									<img th:src="|/static/upload/${dto.goodsMainStoreImage}|"/>
+    									<img th:src="|/static/upload/${dto.goodsMainStoreImage}|" alt="image-not-found"/>
 									</div>
                                     <div class="btn_main">
                                        <div class="buy_bt"><a href="tel:[[${dto.memberPhone1}]]">구매자와 연락하기</a></div>
