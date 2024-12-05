@@ -129,27 +129,38 @@
         <!-- 헤더 섹션 종료 -->
         
         <!-- 프로필 테이블 섹션 시작 -->
-        <div class="table-container">
-            <table>
-                <tr><td colspan="3">회원정보</td></tr>
+
+<div class="table-container">
+    <div>
+        <h1>Profile of [[${memberCommand.memberId}]]</h1> <!-- 제목을 테이블 위로 위치 -->
+        <table border="1">
+            <thead>
                 <tr>
-                    <td rowspan="4"><img src="[[${dto.profileImage}]]" alt="profileImage"><br><small><u>변경하기</u></small></td>
-                    <td>아이디</td><td th:text="${dto.userId}">아이디</td>
+                    <th colspan="2">회원정보</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>아이디</td>
+                    <td th:text="${memberCommand.memberId}">아이디</td>
                 </tr>
                 <tr>
-                    <td>가입일</td><td th:text="${dto.regist}">가입일</td>
+                    <td>가입일</td>
+                    <td th:text="${memberCommand.memberRegist}">가입일</td>
                 </tr>
                 <tr>
-                    <td>등록물품</td><td><!-- 추가할 내용 --></td>
+                    <td colspan="2">등록물품</td>
                 </tr>
-            </table>
-        </div>
-        <!-- 프로필 테이블 섹션 종료 -->
+                <tr>
+                    <td>상품 번호</td>
+                    <td>등록된 물품 데이터가 없습니다.</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+</div>
+
     <!-- 배너 배경 메인 종료 -->
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> branch 'main' of https://github.com/Moondouble/MiniProject.git
+

@@ -3,7 +3,7 @@
         "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="miniProject.mapper.MemberMapper">
-<insert id="memberInsert" parameterType="memberDTO">
+<insert id="memberInsert" parameterType="MemberDTO">
 	insert into members(MEMBER_NUM, MEMBER_NAME, MEMBER_ID, MEMBER_PW
 	                   , MEMBER_ADDR, MEMBER_ADDR_DETAIL, MEMBER_POST
 	                   , MEMBER_REGIST, GENDER,MEMBER_PHONE1
@@ -26,7 +26,7 @@
 	  , MEMBER_EMAIL, MEMBER_BIRTH, MEMBER_POINT, MEMBER_EMAIL_CONF 
 </sql>
 
-<select id="memberSelectList" resultType="memberDTO" parameterType="startEndPageDTO">
+<select id="memberSelectList" resultType="MemberDTO" parameterType="startEndPageDTO">
 select *
 from (select ROW_NUMBER() over (order by member_num ) as rn  
 	        ,<include refid="memberBaseColumns"/>
@@ -44,12 +44,12 @@ where rn BETWEEN #{startRow} and #{endRow}
 <select id="memberCount" resultType="integer">
 	select count(*) from members
 </select>
-<select resultType="memberDTO" id="memberSelectOne" parameterType="string" >
+<select resultType="MemberDTO" id="memberSelectOne" parameterType="string" >
 	select <include refid="memberBaseColumns" />
 	from members
 	where member_num = #{memberNum}
 </select>
-<update id="memberUpdate" parameterType="memberDTO">
+<update id="memberUpdate" parameterType="MemberDTO">
 	update members
 	<trim prefix="set" suffixOverrides=",">
 		member_Name = #{memberName},

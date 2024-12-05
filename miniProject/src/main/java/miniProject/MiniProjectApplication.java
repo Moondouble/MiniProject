@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import miniProject.command.MemberCommand;
 import miniProject.domain.AuthInfoDTO;
-import miniProject.domain.MemberDTO;
 import miniProject.service.goods.GoodsListService;
 import miniProject.service.goods.MainGoodsListService;
 
@@ -26,9 +26,9 @@ public class MiniProjectApplication {
 	@Autowired
 	GoodsListService goodsListService;
 	@GetMapping("/")
-	public String index(HttpSession session, Model model,MemberDTO memberDTO) {
+	public String index(HttpSession session, Model model) {
 	    AuthInfoDTO authInfo = (AuthInfoDTO) session.getAttribute("auth");
-	    if (authInfo != null) {
+	    if (authInfo != null) { 
 	    	System.out.println("로그인 되었습니다.");
 	        model.addAttribute("auth", authInfo);
 	        goodsListService.execute(null,model,1);
