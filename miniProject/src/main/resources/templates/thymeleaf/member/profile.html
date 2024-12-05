@@ -151,8 +151,8 @@
                     <td colspan="2">등록물품</td>
                 </tr>
                 <tr th:each="dto: ${memberGoodsList}">
-                    <td>[[${dto.goodsNum}]]</td>
-                    <td>[[${dto.goodsName}]]</td>
+                    <td><a th:href="|/../goods/goodsDetail?goodsNum=${dto.goodsNum}|">[[${dto.goodsNum}]]</a></td>
+                    <td><a th:href="|/../goods/goodsDetail?goodsNum=${dto.goodsNum}|">[[${dto.goodsName}]]</a></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center"><a href="/../Join/logout">로그아웃</a></td>
