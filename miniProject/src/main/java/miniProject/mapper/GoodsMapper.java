@@ -13,7 +13,7 @@ public interface GoodsMapper {
 	public int goodsInsert(GoodsDTO dto);
 	public List<GoodsDTO> allSelect(StartEndPageDTO sepDTO);
 	public List<GoodsDTO> goodsSelectAll();
-	public List<GoodsDTO> memberGoodsSelectAll();
+	public List<GoodsDTO> memberGoodsSelectAll(String memberNum);
 	public int goodsCount(String searchWord);
 	public int productsDelete(@Param("products") String products[]);
 	public GoodsDTO goodsSelectOne(String goodsNum);

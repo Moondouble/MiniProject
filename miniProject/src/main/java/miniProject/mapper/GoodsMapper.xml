@@ -63,7 +63,7 @@ select <include refid="goodsColumnsBase" />
 from goods
 
 </select>
-<select id="goodsSelectAll" resultType="goods">
+<select id="memberGoodsSelectAll" parameterType="MemberDTO" resultType="goods">
 select <include refid="goodsColumnsBase" />
 from goods
 where member_num = #{memberNum}

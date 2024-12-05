@@ -150,13 +150,9 @@
                 <tr>
                     <td colspan="2">등록물품</td>
                 </tr>
-
-                 <tr th:if="${list == null}">
-                    <td>상품번호</a></td>
-                    <td>등록한 상품이 없습니다.</td>
-                </tr>
-                <tr th:each="dto : ${list}" th:if="${list != null}">
+                <tr th:each="dto : ${list}">
                     <td><a th:href="goodsDetail/${dto.memberNum}">[[${dto.goodsNum}]]</a></td>
+                    <td><a th:href="goodsDetail/${dto.memberNum}">[[${dto.goodsName}]]</a></td>
                 <tr>
                     <td colspan="2" align="center"><a href="/../Join/logout">로그아웃</a></td>
                 </tr>
