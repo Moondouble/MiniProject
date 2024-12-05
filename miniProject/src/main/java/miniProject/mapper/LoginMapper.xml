@@ -10,13 +10,14 @@
 	select 1  from members where member_email = #{userEmail}
 </select>
 <resultMap type="auth" id="authResultMap">
+	<result column="member_num" property="userNum" jdbcType="VARCHAR"/>
 	<result column="member_id" property="userId" jdbcType="VARCHAR"/>
 	<result column="member_pw" property="userPw" jdbcType="VARCHAR"/>
 	<result column="member_name" property="userName" jdbcType="VARCHAR"/>
 	<result column="member_email" property="userEmail" jdbcType="VARCHAR"/>
 </resultMap>
 <select id="loginSelectOne" parameterType="string" resultMap="authResultMap">
-select member_id , member_pw , member_name ,member_email
+select member_num , member_id , member_pw , member_name ,member_email
 from members
 where member_id = #{userId}
 
