@@ -18,28 +18,34 @@ import miniProject.mapper.GoodsMapper;
 
 import miniProject.mapper.MemberMapper;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @Service
 public class GoodsWriteService {
+
 	@Autowired
 	GoodsMapper goodsMapper;
-	public void execute(GoodsCommand goodsCommand,HttpSession session) {
+	@Autowired
+	MemberMapper memberMapper;
+
+	public void execute(GoodsCommand goodsCommand, HttpSession session) {
 		GoodsDTO dto = new GoodsDTO();
 		dto.setGoodsContents(goodsCommand.getGoodsContents());
 		dto.setGoodsName(goodsCommand.getGoodsName());
 		dto.setGoodsNum(goodsCommand.getGoodsNum());
 		dto.setGoodsPrice(goodsCommand.getGoodsPrice());
-		AuthInfoDTO auth = (AuthInfoDTO)session.getAttribute("auth");
+		dto.setGoodsCategory(goodsCommand.getGoodsCategory());
+		AuthInfoDTO auth = (AuthInfoDTO) session.getAttribute("auth");
+		String memberNum = memberMapper.getMemberNum(auth.getUserId());
+		dto.setMemberNum(memberNum);
+
 		////// 파일 추가
 		/// 경로
 		URL resource = getClass().getClassLoader().getResource("static/upload");
 		System.out.println("resource : " + resource);
 		String filrDir = resource.getFile();
-		//String filrDir = "C:/Users/misolaptop1/eclipse-workspace/real_time_data_process_20240708/springBootMVCShopping/target/classes/static/upload";
-		////////파일 관련 내용
-		//  메인이미지
+		// String filrDir =
+		// "C:/Users/misolaptop1/eclipse-workspace/real_time_data_process_20240708/springBootMVCShopping/target/classes/static/upload";
+		//////// 파일 관련 내용
+		// 메인이미지
 		MultipartFile mf = goodsCommand.getGoodsMainImage();
 		String originalFile = mf.getOriginalFilename();
 		/// 저장하기 위한 이름 만들기 : UUID : shfioshiof30750937skfhs
@@ -59,11 +65,11 @@ public class GoodsWriteService {
 		dto.setGoodsMainImage(originalFile);
 		dto.setGoodsMainStoreImage(storeFileName);
 		////
-		if(!goodsCommand.getGoodsDetailImage()[0].getOriginalFilename().isEmpty()) {
-			String originalTotal = ""; 
+		if (!goodsCommand.getGoodsDetailImage()[0].getOriginalFilename().isEmpty()) {
+			String originalTotal = "";
 			String storeTotal = "";
-			for(MultipartFile mpf : goodsCommand.getGoodsDetailImage()) {
-				originalFile = mpf.getOriginalFilename();//오류
+			for (MultipartFile mpf : goodsCommand.getGoodsDetailImage()) {
+				originalFile = mpf.getOriginalFilename();// 오류
 				extension = originalFile.substring(originalFile.lastIndexOf("."));
 				storeName = UUID.randomUUID().toString().replace("-", "");
 				storeFileName = storeName + extension;
@@ -74,7 +80,7 @@ public class GoodsWriteService {
 					e.printStackTrace();
 				}
 				originalTotal += originalFile + "/";
-				storeTotal += storeFileName +"/";
+				storeTotal += storeFileName + "/";
 			}
 			dto.setGoodsDetailImage(originalTotal);
 			dto.setGoodsDetailStoreImage(storeTotal);
@@ -82,12 +88,3 @@ public class GoodsWriteService {
 		goodsMapper.goodsInsert(dto);
 	}
 }
-
-
-
-
-
-
-
-
-
