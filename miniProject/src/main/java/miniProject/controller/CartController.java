@@ -93,17 +93,11 @@ public class CartController {
 		}
 	}
 	
-	@PostMapping("/add")
-	@ResponseBody
-	public ResponseEntity<String> addToCart(@RequestBody CartCommand cartCommand) {
-	    try {
-	        cartInsertService.execute(cartCommand);
-	        return ResponseEntity.ok("상품이 장바구니에 추가되었습니다.");
-	    } catch (Exception e) {
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("장바구니 추가 중 오류가 발생했습니다.");
-	    }
+	@RequestMapping("cartList/{memberNum}")
+	public String cartList(Model model, HttpSession session) {
+		cartListService.execute(model, session);
+		return "thymeleaf/cart/cartList";
 	}
-	
 	/*
 	 * @RequestMapping("cartList") public String cartList(Model model, HttpSession
 	 * session) { cartListService.execute(model, session); return

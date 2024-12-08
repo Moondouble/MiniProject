@@ -26,48 +26,9 @@
     <link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     
-    <!-- 스크립트 -->
+     <!-- 스크립트 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(function() {
-            $("#nxtBtn").click(function() {
-                if ($("#agree").is(":checked")) {
-                    location.href = "write";
-                } else {
-                    alert("약관에 동의해야 합니다.");
-                }
-            });
-            
-        });
-        $(document).ready(function() {
-            $('#addToCartButton').click(function() {
-                const memberNum = $('#memberNum').text().trim();
-                const goodsNum = $('#goodsNum').text().trim();
-
-                if (!memberNum || memberNum === "로그인 필요") {
-                    alert("로그인이 필요합니다.");
-                    return;
-                }
-
-                $.ajax({
-                    url: "/cart/add",
-                    type: "POST",
-                    contentType: "application/json",
-                    data: JSON.stringify({
-                        memberNum: memberNum,
-                        goodsNum: goodsNum,
-                        qty: 1
-                    }),
-                    success: function(response) {
-                        alert("장바구니에 추가되었습니다!");
-                    },
-                    error: function() {
-                        alert("장바구니 추가 중 오류가 발생했습니다.");
-                    }
-                });
-            });
-        });    
-    </script>
+    
 </head>
 <body>
     <!-- 배너 시작 -->
@@ -144,66 +105,71 @@
         </div>
         <!-- 헤더 섹션 종료 -->
         <br>
-		<table border=1 align="center" width="600">
-			<caption>상품 상세보기</caption>
-			<tr>
-				<th width="150">상품번호</th>
-				<td><span id="goodsNum">[[${goodsCommand.goodsNum }]]</span></td>
-			</tr>
-			<tr>
-				<th>상품명</th>
-				<td><span id="goodsName">[[${goodsCommand.goodsName }]]</span></td>
-			</tr>
-			<tr>
-				<th>상품가격</th>
-				<td><span id="goodsPrice">[[${goodsCommand.goodsPrice }]]</span></td>
-			</tr>
-			<tr>
-				<th>상품설명</th>
-				<td>
-					<!-- \n을 <br />로 변경합니다. --> <span
-					th:utext="${#strings.replace(goodsCommand.goodsContents, newLine, '<br />')}"></span>
-				</td>
-			</tr>
-			<tr>
-				<th>등록한 회원</th>
-				<td><a th:href="@{/../member/memberDetail/{memberNum}(memberNum=${goodsCommand.memberNum })}"/>[[${goodsCommand.memberNum }]]</a></td>
-			</tr>
-			<tr>
-				<th>등록일</th>
-				<td>[[${#dates.format(goodsCommand.goodsRegist,'yyyy-MM-dd')}]]</td>
-			</tr>
-			<tr>
-				<th>장바구니</th>
-				<td><button id="addToCartButton" class="btn btn-primary">장바구니에 추가</button></td>
-			</tr>
-			<tr>
-				<td colspan="2">대문이미지<br /> <img
-					th:src="|/static/upload/${goodsCommand.goodsMainStoreImage}|" />
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">상세이미지<br /> <th:block
-						th:each="image : ${#strings.arraySplit(goodsCommand.goodsDetailStoreImage,'[`/]')}">
-						<img th:src="|/static/upload/${image}|" />
-						<br />
-					</th:block>
-				</td>
-			</tr>
-			<img th:if="${wish <= 0 or wish == null}" src="/static/images/hart1.jpg" id="wish" width="20"/>
-					<img th:if="${wish > 0 }"src="/static/images/hart.jpg" id="wish" width="20"/>찜</td></tr>
-			<a th:href="@{goodsUpdate(goodsNum=${goodsCommand.goodsNum })}">상품
-				수정</a> |
-			<a th:href="@{'goodsDel/'+${goodsCommand.goodsNum }}">상품 삭제</a> |
-			<!-- |goodsDel/${dto.goodsNum }| -->
-			<a href="goodsList">상품목록</a> |
-			<a href="javascript:history.back();">뒤로가기</a>
-			</th>
-			</tr>
-		</table>
-		<br>
-</div>
-
-
+		 <div class="container">
+        <h1 class="mt-4 mb-4">상품 상세보기</h1>
+        <table class="table table-bordered">
+            <tr>
+                <th>상품번호</th>
+                <td><span id="goodsNum">[[${goodsCommand.goodsNum}]]</span></td>
+            </tr>
+            <tr>
+                <th>상품명</th>
+                <td><span id="goodsName">[[${goodsCommand.goodsName}]]</span></td>
+            </tr>
+            <tr>
+                <th>상품가격</th>
+                <td><span id="goodsPrice">[[${goodsCommand.goodsPrice}]]</span></td>
+            </tr>
+            <tr>
+                <th>상품설명</th>
+                <td>
+                    <span th:utext="${#strings.replace(goodsCommand.goodsContents, newLine, '<br />')}"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>등록한 회원</th>
+                <td>
+                    <a th:if="${goodsCommand.memberNum != null}" 
+                       th:href="@{/../member/memberDetail/{memberNum}(memberNum=${goodsCommand.memberNum})}">
+                       [[${goodsCommand.memberNum}]]
+                    </a>
+                    <span th:if="${goodsCommand.memberNum == null}">회원 정보 없음</span>
+                </td>
+            </tr>
+            <tr>
+                <th>등록일</th>
+                <td>[[${#dates.format(goodsCommand.goodsRegist, 'yyyy-MM-dd')}]]</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>대문이미지</strong><br />
+                    <img th:src="|/static/upload/${goodsCommand.goodsMainStoreImage}|" alt="대문이미지" class="img-fluid" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <strong>상세이미지</strong><br />
+                    <div th:each="image : ${#strings.arraySplit(goodsCommand.goodsDetailStoreImage, '[`/]')}">
+                        <img th:src="|/static/upload/${image}|" alt="상세이미지" class="img-fluid mb-2" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <img th:src="${wish > 0 ? '/static/images/hart.jpg' : '/static/images/hart1.jpg'}" 
+                         id="wish" width="20" alt="찜 상태" />
+                    <span>찜</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="text-center">
+                    <a th:href="@{goodsUpdate(goodsNum=${goodsCommand.goodsNum})}" class="btn btn-warning">상품 수정</a>
+                    <a th:href="@{'goodsDel/' + ${goodsCommand.goodsNum}}" class="btn btn-danger">상품 삭제</a>
+                    <a href="goodsList" class="btn btn-secondary">상품목록</a>
+                    <a href="javascript:history.back();" class="btn btn-secondary">뒤로가기</a>
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
