@@ -91,6 +91,10 @@ select member_num from members
 where member_id = #{memberId}
 </select>
 
+<select id="memberNumSelect" parameterType="string" resultType="string">
+	select member_num from members where member_id = #{memberId}
+</select>
+
 </mapper>
 
 

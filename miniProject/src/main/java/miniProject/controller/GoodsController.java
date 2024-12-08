@@ -1,5 +1,6 @@
 package miniProject.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import miniProject.command.GoodsCommand;
 import miniProject.service.AutoNumService;
 import miniProject.service.goods.GoodsDetailService;
+import miniProject.service.goods.GoodsDetailViewService;
 import miniProject.service.goods.GoodsListService;
 import miniProject.service.goods.GoodsWriteService;
 import miniProject.service.goods.MainGoodsListService;
@@ -55,9 +56,13 @@ public class GoodsController {
 		return "thymeleaf/goods/goodsList";
 	}
 	
+	@Autowired
+	GoodsDetailViewService goodsDetailViewService;
+	
 	@RequestMapping("goodsDetail")
-	public String goodsDetail(@RequestParam("goodsNum") String goodsNum, Model model) {
-		goodsDetailService.execute(goodsNum, model);
+	public String goodsDetail(@RequestParam("goodsNum") String goodsNum, Model model, HttpServletResponse response, HttpSession session) {
+		//goodsDetailService.execute(goodsNum, model);
+		goodsDetailViewService.execute(goodsNum, model, response, session);
 		return "thymeleaf/goods/goodsDetail";
 	}
 	

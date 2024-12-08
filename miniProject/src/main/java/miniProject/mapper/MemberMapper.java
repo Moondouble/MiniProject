@@ -17,4 +17,5 @@ public interface MemberMapper {
 	public void memberDelete(String memberNum);
 	public int memberEmailCheckUpdate(String memberEmail);
 	public String getMemberNum(String memberId);
+	public String memberNumSelect(String memberId);
 }

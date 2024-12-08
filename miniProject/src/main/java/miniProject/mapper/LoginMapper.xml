@@ -20,7 +20,6 @@
 select member_num , member_id , member_pw , member_name ,member_email
 from members
 where member_id = #{userId}
-
 </select>
 
 

@@ -37,7 +37,36 @@
                     alert("약관에 동의해야 합니다.");
                 }
             });
+            
         });
+        $(document).ready(function() {
+            $('#addToCartButton').click(function() {
+                const memberNum = $('#memberNum').text().trim();
+                const goodsNum = $('#goodsNum').text().trim();
+
+                if (!memberNum || memberNum === "로그인 필요") {
+                    alert("로그인이 필요합니다.");
+                    return;
+                }
+
+                $.ajax({
+                    url: "/cart/add",
+                    type: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        memberNum: memberNum,
+                        goodsNum: goodsNum,
+                        qty: 1
+                    }),
+                    success: function(response) {
+                        alert("장바구니에 추가되었습니다!");
+                    },
+                    error: function() {
+                        alert("장바구니 추가 중 오류가 발생했습니다.");
+                    }
+                });
+            });
+        });    
     </script>
 </head>
 <body>
@@ -119,15 +148,15 @@
 			<caption>상품 상세보기</caption>
 			<tr>
 				<th width="150">상품번호</th>
-				<td>[[${goodsCommand.goodsNum }]]</td>
+				<td><span id="goodsNum">[[${goodsCommand.goodsNum }]]</span></td>
 			</tr>
 			<tr>
 				<th>상품명</th>
-				<td>[[${goodsCommand.goodsName }]]</td>
+				<td><span id="goodsName">[[${goodsCommand.goodsName }]]</span></td>
 			</tr>
 			<tr>
 				<th>상품가격</th>
-				<td>[[${goodsCommand.goodsPrice }]]</td>
+				<td><span id="goodsPrice">[[${goodsCommand.goodsPrice }]]</span></td>
 			</tr>
 			<tr>
 				<th>상품설명</th>
@@ -145,6 +174,10 @@
 				<td>[[${#dates.format(goodsCommand.goodsRegist,'yyyy-MM-dd')}]]</td>
 			</tr>
 			<tr>
+				<th>장바구니</th>
+				<td><button id="addToCartButton" class="btn btn-primary">장바구니에 추가</button></td>
+			</tr>
+			<tr>
 				<td colspan="2">대문이미지<br /> <img
 					th:src="|/static/upload/${goodsCommand.goodsMainStoreImage}|" />
 				</td>
@@ -157,6 +190,8 @@
 					</th:block>
 				</td>
 			</tr>
+			<img th:if="${wish <= 0 or wish == null}" src="/static/images/hart1.jpg" id="wish" width="20"/>
+					<img th:if="${wish > 0 }"src="/static/images/hart.jpg" id="wish" width="20"/>찜</td></tr>
 			<a th:href="@{goodsUpdate(goodsNum=${goodsCommand.goodsNum })}">상품
 				수정</a> |
 			<a th:href="@{'goodsDel/'+${goodsCommand.goodsNum }}">상품 삭제</a> |
@@ -168,5 +203,7 @@
 		</table>
 		<br>
 </div>
+
+
 </body>
 </html>
