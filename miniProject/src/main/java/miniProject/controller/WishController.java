@@ -1,32 +1,37 @@
+
 package miniProject.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.*;
 import miniProject.domain.WishDTO;
 import miniProject.service.wish.WishListService;
 
-@Controller
-@RequestMapping("wish")
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/wish")
 public class WishController {
 
     @Autowired
     private WishListService wishListService;
 
-    @GetMapping("/wishList/{memberNum}")
-    public String memberDetail(@PathVariable("memberNum") String memberNum, Model model) {
-        wishListService.execute(memberNum, model);
-        return "thymeleaf/member/profile";
+    // Add a new wish
+    @PostMapping
+    public String addWish(@RequestBody WishDTO wishDTO) {
+        boolean isAdded = wishListService.addWish(wishDTO);
+        return isAdded ? "Wish added successfully!" : "Failed to add wish.";
     }
-    @GetMapping("wishadd/{memberNum}")
-    public String add(@PathVariable("memberNum") String memberNum,
-    		@PathVariable("goodsNum") String goodsNum,Model model) {
-    	return "/";
+
+    // Delete a wish by ID
+    @DeleteMapping("/{wishId}")
+    public String deleteWish(@PathVariable Long wishId) {
+        boolean isDeleted = wishListService.deleteWish(wishId);
+        return isDeleted ? "Wish deleted successfully!" : "Failed to delete wish.";
+    }
+
+    // Get all wishes for a specific user
+    @GetMapping("/{userId}")
+    public List<WishDTO> getWishesByUser(@PathVariable Long userId) {
+        return wishListService.getWishesByUser(userId);
     }
 }

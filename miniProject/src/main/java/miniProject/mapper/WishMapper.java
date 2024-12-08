@@ -1,14 +1,14 @@
+
 package miniProject.mapper;
+
+import miniProject.domain.WishDTO;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-
-import miniProject.domain.StartEndPageDTO;
-import miniProject.domain.WishDTO;
-
 @Mapper
-public interface WishMapper
-{
-	public List<WishDTO> memberWishSelectAll(String memberNum);
+public interface WishMapper {
+    int insertWish(WishDTO wishDTO);
+    int deleteWish(Long wishId);
+    List<WishDTO> selectWishesByUser(Long userId);
 }

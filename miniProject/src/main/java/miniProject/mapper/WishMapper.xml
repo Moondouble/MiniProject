@@ -1,23 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC
-        "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="miniProject.mapper.WishMapper">
-<select id="idCheckSelectOne" parameterType="string" resultType="integer"> 
-	select 1  from members where member_id = #{userId}
-</select>
-<select id="emailCheckSelectOne" parameterType="string" resultType="integer">
-	select 1  from members where member_email = #{userEmail}
-</select>
-<resultMap type="auth" id="authResultMap">
-	<result column="member_num" property="userNum" jdbcType="VARCHAR"/>
-	<result column="goods_num" property="goodsNum" jdbcType="VARCHAR"/>
-	<result column="wish_date" property="wishDate" jdbcType="DATE"/>
-</resultMap>
-<select id="memberWishSelectAll">
-select * from wish where member_num = #{userNum}
-</select>
-<insert id="memberWishInsert">
-insert into wish (member_num,goods_num,wish_date) values (#{userNum},#{goodsNum},sysdate)
-</insert>
+
+    <!-- Insert Wish -->
+    <insert id="insertWish" parameterType="WishDTO">
+        INSERT INTO wish (user_id, product_id, created_at)
+        VALUES (#{userId}, #{productId}, NOW())
+    </insert>
+
+    <!-- Delete Wish -->
+    <delete id="deleteWish" parameterType="long">
+        DELETE FROM wish WHERE wish_id = #{wishId}
+    </delete>
+
+    <!-- Select Wishes by User -->
+    <select id="selectWishesByUser" parameterType="long" resultType="WishDTO">
+        SELECT * FROM wish WHERE user_id = #{userId}
+    </select>
+
 </mapper>
