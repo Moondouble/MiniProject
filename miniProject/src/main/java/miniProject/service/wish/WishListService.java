@@ -10,12 +10,13 @@ import miniProject.domain.WishDTO;
 import miniProject.mapper.WishMapper;
 
 @Service
-public class WishListService
-{
-	@Autowired
-	WishMapper wishMapper;
-	public void execute(Model model,WishDTO dto) {
-		List<WishDTO> memberGoodsList = WishMapper.memberWishSelectAll(memberNum);
+public class WishListService {
+
+    @Autowired
+    WishMapper wishMapper;
+
+    public void execute(String memberNum,Model model) {
+        List<WishDTO> memberGoodsList = wishMapper.memberWishSelectAll(memberNum);
         model.addAttribute("memberGoodsList", memberGoodsList);
-	}
+    }
 }

@@ -14,5 +14,10 @@
 	<result column="goods_num" property="goodsNum" jdbcType="VARCHAR"/>
 	<result column="wish_date" property="wishDate" jdbcType="DATE"/>
 </resultMap>
-
+<select id="memberWishSelectAll">
+select * from wish where member_num = #{userNum}
+</select>
+<insert id="memberWishInsert">
+insert into wish (member_num,goods_num,wish_date) values (#{userNum},#{goodsNum},sysdate)
+</insert>
 </mapper>
