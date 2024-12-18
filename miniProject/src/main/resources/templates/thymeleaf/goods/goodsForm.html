@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <!-- 사이트 메타정보 -->
-    <title>기가마켓 사용자 약관</title>
+    <title>상품 등록 페이지</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -50,11 +50,8 @@
                     <div class="col-sm-12">
                         <div class="custom_menu">
                             <ul>
-                                <li><a href="#">베스트셀러</a></li>
-                                <li><a href="#">기프트 아이디어</a></li>
-                                <li><a href="#">신상품</a></li>
-                                <li><a href="#">오늘의 특가</a></li>
-                                <li><a href="#">고객 서비스</a></li>
+                                <li><a href="../../goods/goodsWrite">상품등록</a></li>
+                                <li><a href="../../goods/goodsList">상품 리스트</a></li>
                             </ul>
                         </div>
                     </div>
@@ -130,9 +127,10 @@
 					<td>
 						<select th:field="*{goodsCategory}" id="category">
 							<option value="none">카테고리</option>
-							<option value="apple">사과</option>
-							<option value="banana">바나나</option>
-							<option value="orange">오렌지</option>
+							<option value="apple">노트북</option>
+							<option value="banana">컴퓨터</option>
+							<option value="orange">스마트폰</option>
+							<option value="orange">기타 주변기기</option>
 						</select>
 					</td>
 				</tr>
@@ -161,5 +159,49 @@
 		</form>
 		<br>
 </div>
-</body>
+      <!-- footer section start -->
+      <div class="footer_section layout_padding">
+         <div class="container">
+            <div class="footer_logo"><a href="index.html"><img src="/static/images/footer-logo.png"></a></div>
+            <div class="input_bt">
+               <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
+               <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
+            </div>
+            <div class="footer_menu">
+               <ul>
+                  <li><a href="goods/goodsWrite">상품등록</a></li>
+                  <li><a href="goods/goodsList">상품리스트</a></li>
+
+               </ul>
+            </div>
+            <div class="location_main">Help Line  Number : <a href="tel://010-2207-0586">+82)10 2207 0586</a></div>
+         </div>
+      </div>
+      <!-- footer section end -->
+      <!-- copyright section start -->
+      <div class="copyright_section">
+         <div class="container">
+            <p class="copyright_text">© 2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+         </div>
+      </div>
+      <!-- copyright section end -->
+      <!-- Javascript files-->
+      <script src="/static/js/jquery.min.js"></script>
+      <script src="/static/js/popper.min.js"></script>
+      <script src="/static/js/bootstrap.bundle.min.js"></script>
+      <script src="/static/js/jquery-3.0.0.min.js"></script>
+      <script src="/static/js/plugin.js"></script>
+      <!-- sidebar -->
+      <script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="/static/js/custom.js"></script>
+      <script>
+         function openNav() {
+           document.getElementById("mySidenav").style.width = "250px";
+         }
+         
+         function closeNav() {
+           document.getElementById("mySidenav").style.width = "0";
+         }
+      </script>
+   </body>
 </html>
